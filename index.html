@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Texas vs. Texas A&amp;M tracker: coaches and quarterbacks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --orange:#BF5700; --orange-ink:#8F4100; --maroon:#500000; --maroon-ink:#3A0000;
+  --paper:#F7F7F4; --surface:#FFFFFF; --ink:#1C1A19; --muted:#5C5852; --rule:#DEDBD5; --grid:#E9E6E0;
+  --t1:#1E2A36; --t1x:#FFFFFF; --t2:#4C6175; --t2x:#FFFFFF; --t3:#B4C1CC; --t3x:#17222D;
+  --t4:#E4E7EA; --t4x:#3B4048; --t5:#F2DCD3; --t5x:#7A2410; --tip:#1C1A19; --tipx:#FFFFFF;
+  --display:'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+  --body:'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --orange:#E8762A; --orange-ink:#FF9A52; --maroon:#A33A3A; --maroon-ink:#D46A6A;
+    --paper:#141312; --surface:#1D1B1A; --ink:#F1EEE9; --muted:#AFA9A1; --rule:#34312E; --grid:#2A2826;
+    --t1:#D9E3EC; --t1x:#101820; --t2:#8EA6BB; --t2x:#0E1720; --t3:#4B5D6D; --t3x:#EEF3F7;
+    --t4:#2E3135; --t4x:#C9CDD2; --t5:#4A2418; --t5x:#F3B8A3; --tip:#F1EEE9; --tipx:#141312;
+  }
+}
+:root[data-theme="dark"]{
+  --orange:#E8762A; --orange-ink:#FF9A52; --maroon:#A33A3A; --maroon-ink:#D46A6A;
+  --paper:#141312; --surface:#1D1B1A; --ink:#F1EEE9; --muted:#AFA9A1; --rule:#34312E; --grid:#2A2826;
+  --t1:#D9E3EC; --t1x:#101820; --t2:#8EA6BB; --t2x:#0E1720; --t3:#4B5D6D; --t3x:#EEF3F7;
+  --t4:#2E3135; --t4x:#C9CDD2; --t5:#4A2418; --t5x:#F3B8A3; --tip:#F1EEE9; --tipx:#141312;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:4px}
+
+/* Hero: the one bold move — a diagonal split poster */
+.hero{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:420px;overflow:hidden;color:#fff}
+.side{position:relative;padding:56px clamp(20px,5vw,72px) 48px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.side.tx{background:var(--orange)} .side.am{background:var(--maroon);text-align:right;align-items:flex-end}
+.hero::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:120px;margin-left:-60px;background:linear-gradient(100deg,var(--orange) 0 50%,var(--maroon) 50% 100%);transform:skewX(-12deg);pointer-events:none}
+.school{font-weight:600;font-size:18px;opacity:.9}
+.name{font-family:var(--display);font-weight:900;font-size:clamp(64px,11vw,168px);line-height:.82;letter-spacing:-.01em;margin:0}
+.since{font-size:16px;opacity:.85;margin-top:8px}
+.big{display:flex;gap:28px;margin-top:22px}
+.side.am .big{justify-content:flex-end}
+.big div{display:flex;flex-direction:column}
+.big b{font-family:var(--display);font-weight:800;font-size:56px;line-height:.9}
+.big span{font-size:14px;opacity:.85}
+.vs{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:40px;box-shadow:0 0 0 6px rgba(255,255,255,.25)}
+.side .name,.side .big b{text-shadow:0 2px 0 rgba(0,0,0,.12)}
+
+main{max-width:1180px;margin:0 auto;padding:40px clamp(16px,4vw,40px) 64px}
+.intro{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;align-items:end;margin-bottom:28px}
+.intro h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,5vw,52px);line-height:1;margin:0;max-width:20ch}
+.intro p{margin:0;color:var(--muted);max-width:52ch}
+.updated{font-size:14px;color:var(--muted)}
+
+.controls{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin:8px 0 18px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:4px}
+.seg button{border:0;background:transparent;padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:600;font-size:15px;color:var(--muted);transition:background .2s,color .2s}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button:hover:not([aria-pressed="true"]){color:var(--ink)}
+
+.chartcard{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:22px 22px 14px;position:relative}
+.charthead{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin-bottom:6px}
+.charthead h2{font-family:var(--display);font-weight:800;font-size:30px;margin:0;line-height:1.05}
+.legend{display:flex;gap:18px;font-size:15px;font-weight:600}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px;vertical-align:middle;margin-right:8px}
+.chartwrap{overflow-x:auto}
+svg.chart{display:block;width:100%;min-width:560px;height:auto}
+.chart .gl{stroke:var(--grid)} .chart .ax{fill:var(--muted);font-size:13px;font-family:var(--body)}
+.chart .xl{fill:var(--ink);font-size:15px;font-weight:600;font-family:var(--body)}
+.chart path.line{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;transition:d .6s cubic-bezier(.3,.7,.2,1)}
+.chart circle.pt{stroke:var(--surface);stroke-width:3;transition:cy .6s cubic-bezier(.3,.7,.2,1),cx .6s cubic-bezier(.3,.7,.2,1),r .15s;cursor:pointer}
+.chart text.lab{font-family:var(--display);font-weight:800;font-size:19px;transition:y .6s cubic-bezier(.3,.7,.2,1),x .6s cubic-bezier(.3,.7,.2,1);pointer-events:none}
+.chart rect.band{fill:var(--ink);opacity:0;transition:opacity .15s}
+.chart rect.band.on{opacity:.05}
+.tip{position:absolute;pointer-events:none;background:var(--tip);color:var(--tipx);padding:10px 12px;border-radius:8px;font-size:14px;line-height:1.35;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;min-width:230px;z-index:5}
+.tip.on{opacity:1;transform:none}
+.tip b{font-family:var(--display);font-size:18px;font-weight:800;display:block;margin-bottom:4px}
+.tip .row{display:flex;justify-content:space-between;gap:20px;white-space:nowrap}
+.note{font-size:14px;color:var(--muted);margin:10px 2px 0}
+
+section.block{margin-top:44px}
+section.block > h2{font-family:var(--display);font-weight:800;font-size:34px;margin:0 0 4px;line-height:1}
+section.block > p.sub{margin:0 0 18px;color:var(--muted)}
+
+/* Season faceoff */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chips button{border:1px solid var(--rule);background:var(--surface);border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;font-family:var(--display);font-size:22px;line-height:1}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.faceoff{display:grid;gap:10px}
+.fo{display:grid;grid-template-columns:72px 1fr 150px 1fr 72px;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:12px 16px}
+.fo .rk{font-family:var(--display);font-weight:900;font-size:40px;line-height:1;text-align:center}
+.fo .cat{text-align:center;font-weight:700;font-size:16px}
+.fo .cat small{display:block;font-weight:500;color:var(--muted);font-size:13px}
+.bar{height:14px;border-radius:7px;background:var(--grid);position:relative;overflow:hidden}
+.bar span{position:absolute;top:0;bottom:0;border-radius:7px;transition:width .5s cubic-bezier(.3,.7,.2,1)}
+.bar.l span{right:0;background:var(--orange)} .bar.r span{left:0;background:var(--maroon)}
+.fo .win{color:var(--paper);border-radius:8px;padding:4px 0}
+.fo .rk.tx.win{background:var(--orange)} .fo .rk.am.win{background:var(--maroon)}
+.fo .rk.lose{color:var(--muted)}
+.verdict{margin-top:14px;font-weight:600}
+
+/* Grids */
+.grids{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.gcard{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:20px;border-top:6px solid var(--c)}
+.gcard h3{font-family:var(--display);font-weight:800;font-size:26px;margin:0 0 12px;color:var(--c)}
+.gtable{display:grid;grid-template-columns:76px repeat(4,1fr);gap:6px;font-size:13px}
+.gtable .h{color:var(--muted);text-align:center;font-weight:600;padding-bottom:2px}
+.gtable .y{font-family:var(--display);font-weight:800;font-size:22px;line-height:1;display:flex;flex-direction:column;justify-content:center}
+.gtable .y small{font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted)}
+.cell{height:44px;border-radius:7px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:22px;transition:transform .15s,box-shadow .15s}
+.cell.dim{background:transparent;border:1px dashed var(--rule);color:var(--muted);font-family:var(--body);font-weight:500;font-size:12px;grid-column:span 4}
+.cell.sel{box-shadow:0 0 0 3px var(--ink);transform:scale(1.04)}
+.tier1{background:var(--t1);color:var(--t1x)} .tier2{background:var(--t2);color:var(--t2x)} .tier3{background:var(--t3);color:var(--t3x)}
+.tier4{background:var(--t4);color:var(--t4x)} .tier5{background:var(--t5);color:var(--t5x)}
+.scale{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;font-size:13px;align-items:center;color:var(--muted)}
+.scale span.k{padding:4px 10px;border-radius:6px;font-weight:600}
+
+/* Tale of the tape */
+.tape{background:var(--surface);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.tape .tr{display:grid;grid-template-columns:1fr 1.4fr 1fr;align-items:center;border-top:1px solid var(--rule)}
+.tape .tr:first-child{border-top:0}
+.tape .tr > div{padding:14px 18px}
+.tape .v{font-family:var(--display);font-weight:800;font-size:34px;line-height:1}
+.tape .v.l{text-align:right} .tape .m{text-align:center;color:var(--muted);font-weight:600;font-size:15px}
+.tape .v.best.l{color:var(--orange)} .tape .v.best.r{color:var(--maroon)}
+.tape .hd .v{font-size:22px}
+
+footer{margin-top:40px;font-size:14px;color:var(--muted);border-top:1px solid var(--rule);padding-top:18px;display:grid;gap:8px}
+footer a{color:inherit}
+
+
+/* View tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.tabs .in{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px);display:flex;gap:6px}
+.tabs button{border:0;background:none;padding:16px 18px 13px;font-family:var(--display);font-weight:800;font-size:24px;color:var(--muted);cursor:pointer;border-bottom:4px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+[hidden]{display:none!important}
+/* Spotlight */
+.spot{background:var(--surface);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.spot .top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 20px;gap:12px;border-bottom:1px solid var(--rule)}
+.spot .who{font-family:var(--display);font-weight:900;font-size:clamp(30px,4vw,44px);line-height:1}
+.spot .who small{display:block;font-family:var(--body);font-weight:500;font-size:14px;color:var(--muted);margin-top:4px}
+.spot .who.r{text-align:right}
+.srow{display:grid;grid-template-columns:90px 1fr 160px 1fr 90px;align-items:center;gap:12px;padding:10px 20px;border-top:1px solid var(--grid)}
+.srow:first-of-type{border-top:0}
+.srow .n{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;text-align:center;border-radius:8px;padding:4px 0}
+.srow .n.w.tx{background:var(--orange);color:#fff} .srow .n.w.am{background:var(--maroon);color:#fff}
+.srow .n.l{color:var(--muted)}
+.srow .lab{text-align:center;font-weight:600;font-size:15px}
+.srow .lab small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.spotnote{padding:12px 20px 16px;font-size:14px;color:var(--muted);border-top:1px solid var(--rule)}
+/* Leaderboard */
+.lbwrap{background:var(--surface);border:1px solid var(--rule);border-radius:14px;overflow-x:auto}
+table.lb{border-collapse:collapse;width:100%;min-width:900px;font-size:15px}
+.lb th{position:sticky;top:0;background:var(--surface);text-align:right;font-weight:600;color:var(--muted);font-size:13px;padding:12px 10px;border-bottom:2px solid var(--ink);white-space:nowrap}
+.lb th button{border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer}
+.lb th[aria-sort] button{color:var(--ink)}
+.lb th:first-child,.lb td:first-child{text-align:left}
+.lb td{padding:12px 10px;border-bottom:1px solid var(--grid);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lb tr.q{cursor:pointer}
+.lb tr.q:hover td{background:var(--grid)}
+.lb tr.q td:first-child{border-left:5px solid transparent}
+.lb tr.q.tx td:first-child{border-left-color:var(--orange)} .lb tr.q.am td:first-child{border-left-color:var(--maroon)}
+.lb .nm{font-weight:700} .lb .tm{color:var(--muted);font-size:13px;margin-left:6px}
+.lb .rk1{font-weight:800}
+.lb tr.log td{background:var(--paper);padding:0}
+.glog{padding:10px 14px 14px}
+.glog table{border-collapse:collapse;width:100%;font-size:14px}
+.glog th{font-size:12px;color:var(--muted);font-weight:600;text-align:right;padding:6px 8px;border-bottom:1px solid var(--rule)}
+.glog td{text-align:right;padding:6px 8px;border-bottom:1px solid var(--grid)}
+.glog th:nth-child(-n+3),.glog td:nth-child(-n+3){text-align:left}
+.qbrpill{display:inline-block;min-width:44px;text-align:center;border-radius:6px;padding:2px 6px;font-weight:700}
+svg.scat{display:block;width:100%;min-width:560px;height:auto}
+.scat .dot{cursor:pointer;transition:r .15s}
+.scat text.nm{font-family:var(--body);font-weight:700;font-size:14px;pointer-events:none}
+
+@media (max-width:760px){
+  .srow{grid-template-columns:56px 1fr 100px 1fr 56px;padding:8px 10px;gap:8px} .srow .n{font-size:22px}
+  .tabs button{font-size:20px;padding:14px 12px 11px}
+  .hero{min-height:300px}
+  .hero::after{display:none}
+  .side{padding:28px 14px 24px}
+  .name{font-size:56px}
+  .school{font-size:14px} .since{display:none}
+  .big{flex-direction:column;gap:8px;margin-top:14px} .big b{font-size:32px} .big span{font-size:12px}
+  .side.am .big{flex-direction:column-reverse;align-items:flex-end}
+  .seg{flex-wrap:wrap;border-radius:18px} .seg button{padding:7px 12px;font-size:14px}
+  .vs{width:64px;height:64px;font-size:28px}
+  .grids{grid-template-columns:1fr}
+  .fo{grid-template-columns:52px 1fr 104px 1fr 52px;padding:10px;gap:8px}
+  .fo .rk{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* ===== SEC series tab ===== */
+.oppbar{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 22px}
+.oppbar button{border:1px solid var(--rule);background:var(--surface);border-radius:8px;padding:7px 12px 6px;cursor:pointer;font-family:var(--display);font-weight:800;font-size:19px;line-height:1;display:flex;align-items:center;gap:7px}
+.oppbar button i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.oppbar button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.oppbar button small{font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.02em;color:var(--muted)}
+.oppbar button[aria-pressed="true"] small{color:var(--paper);opacity:.75}
+.series{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:26px 26px 22px}
+.series .tally{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:12px}
+.series .tally .n{font-family:var(--display);font-weight:900;font-size:clamp(54px,8vw,92px);line-height:.85}
+.series .tally .n small{font-family:var(--body);font-weight:600;font-size:14px;color:var(--muted);margin-left:6px;letter-spacing:0}
+.series .tally .who{font-weight:700;font-size:16px;margin-bottom:6px}
+.series .tally .r{text-align:right}
+.series .tally .mid{text-align:center;padding-bottom:6px}
+.series .tally .mid b{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;display:block}
+.series .tally .mid span{font-size:13px;color:var(--muted);font-weight:600}
+.sbar{display:flex;height:40px;border-radius:10px;overflow:hidden;margin:14px 0 18px;background:var(--grid)}
+.sbar div{transition:flex-grow .5s cubic-bezier(.3,.7,.2,1)}
+.streak{text-align:center}
+.streak .k{font-weight:600;font-size:14px;color:var(--muted)}
+.streak .v{font-family:var(--display);font-weight:900;font-size:clamp(30px,4.4vw,48px);line-height:1;margin-top:2px}
+.streak .nx{font-size:15px;margin-top:8px;color:var(--muted)}
+.streak .nx b{color:var(--ink)}
+.vacnote{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+.hl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.hl .c{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:14px 16px}
+.hl .c .k{font-size:13px;font-weight:600;color:var(--muted)}
+.hl .c .v{font-family:var(--display);font-weight:800;font-size:30px;line-height:1.05;margin-top:4px}
+.hl .c .s{font-size:13px;color:var(--muted);margin-top:2px}
+.dec{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px}
+.dec div{border-radius:8px;padding:8px 6px;text-align:center;font-size:13px;font-weight:600}
+.dec div b{display:block;font-family:var(--display);font-weight:800;font-size:22px;line-height:1.1}
+.marg rect{transition:opacity .15s}
+.marg rect.dim{opacity:.35}
+.log2{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+.log2 th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;padding:8px;border-bottom:2px solid var(--ink);position:sticky;top:0;background:var(--surface)}
+.log2 td{padding:8px;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums}
+.log2 .res{font-weight:700;white-space:nowrap}
+.res.W{color:var(--maroon-ink)} .res.T{color:var(--muted)}
+details.games{background:var(--surface);border:1px solid var(--rule);border-radius:14px;margin-top:14px}
+details.games summary{cursor:pointer;padding:14px 18px;font-weight:700}
+details.games .wrap{max-height:460px;overflow:auto;border-top:1px solid var(--rule)}
+.glance{border-collapse:collapse;width:100%;min-width:720px;font-size:15px}
+.glance th{font-size:13px;color:var(--muted);font-weight:600;text-align:left;padding:10px;border-bottom:2px solid var(--ink)}
+.glance td{padding:10px;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums;white-space:nowrap}
+.glance tr{cursor:pointer}
+.glance tr:hover td{background:var(--grid)}
+.glance tr.sel td{background:var(--grid);font-weight:700}
+.glance .nm{font-weight:700;display:flex;align-items:center;gap:8px}
+.glance .nm i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.mini{display:flex;height:12px;width:160px;border-radius:4px;overflow:hidden;background:var(--grid)}
+@media (max-width:720px){
+  .series{padding:18px 16px}
+  .hl{grid-template-columns:1fr 1fr}
+  .hl .c:last-child{grid-column:span 2}
+  .oppbar button{font-size:17px;padding:6px 10px 5px}
+}
+
+</style>
+</head>
+<body>
+
+<header class="hero" aria-label="Steve Sarkisian versus Mike Elko">
+  <div class="side tx">
+    <div class="school">Texas Longhorns</div>
+    <h2 class="name">Sark</h2>
+    <div class="since">Steve Sarkisian, head coach since 2021</div>
+    <div class="big"><div><b id="txRec">52–20</b><span>Record at Texas</span></div><div><b id="txNow">7</b><span id="txNowLab">SP+ overall now</span></div></div>
+  </div>
+  <div class="side am">
+    <div class="school">Texas A&amp;M Aggies</div>
+    <h2 class="name">Elko</h2>
+    <div class="since">Mike Elko, head coach since 2024</div>
+    <div class="big"><div><b id="amNow">39</b><span id="amNowLab">SP+ overall now</span></div><div><b id="amRec">21–9</b><span>Record at A&amp;M</span></div></div>
+  </div>
+  <div class="vs" aria-hidden="true">vs</div>
+</header>
+
+<nav class="tabs" aria-label="Tracker sections"><div class="in" role="tablist">
+  <button type="button" role="tab" id="tabCoach" aria-selected="true" aria-controls="viewCoach">Coaches</button>
+  <button type="button" role="tab" id="tabQB" aria-selected="false" aria-controls="viewQB">Quarterbacks</button>
+  <button type="button" role="tab" id="tabSEC" aria-selected="false" aria-controls="viewSEC">SEC Series</button>
+</div></nav>
+<main>
+<div id="viewCoach" role="tabpanel" aria-labelledby="tabCoach">
+  <div class="intro">
+    <h1>Who's building the better program?</h1>
+    <div>
+      <p>Every season of Steve Sarkisian at Texas and Mike Elko at Texas A&amp;M, ranked nationally by the two most-trusted efficiency ratings. Lower is better.</p>
+      <div class="updated" id="updated"></div>
+    </div>
+  </div>
+
+  <div class="controls" role="group" aria-label="Chart options">
+    <div class="seg" id="sysSeg" aria-label="Rating system"></div>
+    <div class="seg" id="unitSeg" aria-label="Unit"></div>
+    <div class="seg" id="alignSeg" aria-label="Line up seasons by"></div>
+  </div>
+
+  <div class="chartcard">
+    <div class="charthead">
+      <h2 id="chartTitle">SP+ overall rank</h2>
+      <div class="legend"><span><i style="background:var(--orange)"></i>Sarkisian</span><span><i style="background:var(--maroon)"></i>Elko</span></div>
+    </div>
+    <div class="chartwrap"><svg class="chart" id="chart" viewBox="0 0 1100 420" role="img" aria-label="Rank by season"></svg></div>
+    <div class="tip" id="tip" role="status"></div>
+    <p class="note" id="chartNote"></p>
+  </div>
+
+  <section class="block" aria-labelledby="foH">
+    <h2 id="foH">Season faceoff</h2>
+    <p class="sub">Pick a season both coaches have worked. Each row shows who ranked better, using the rating system selected above.</p>
+    <div class="chips" id="seasonChips"></div>
+    <div class="faceoff" id="faceoff"></div>
+    <p class="verdict" id="verdict"></p>
+    <p class="note" id="rawNote" style="margin-top:8px">Reality check on Texas's offense: SP+ (19th) and FEI (27th) are opponent-adjusted efficiency ratings, and SP+ still blends in preseason projections this early, so both flatter a unit that has been poor in raw production. Through seven games Texas averages 361 yards and 5.4 yards per play, which ranks 104th nationally in yards per play, 119th in yards per rush and 126th in plays of 20-plus yards (247Sports, after the Florida loss). It managed 272 yards and 17 offensive points against Florida, the SEC's second-worst defense.</p>
+  </section>
+
+  <section class="block" aria-labelledby="gH">
+    <h2 id="gH">Every rank, side by side</h2>
+    <p class="sub" id="gSub">Tap any season to put it in the faceoff.</p>
+    <div class="grids" id="grids"></div>
+    <div class="scale" id="scale"></div>
+  </section>
+
+  <section class="block" aria-labelledby="tH">
+    <h2 id="tH">Tale of the tape</h2>
+    <p class="sub">Lower average rank is better. The stronger figure in each row is colored.</p>
+    <div class="tape" id="tape"></div>
+  </section>
+
+</div>
+<div id="viewQB" role="tabpanel" aria-labelledby="tabQB" hidden>
+  <div class="intro">
+    <h1>Every SEC quarterback, week by week</h1>
+    <div>
+      <p>All 16 SEC starters, from ESPN season totals and game logs, with Arch Manning and Marcel Reed highlighted. Click any quarterback in the leaderboard to open his game log.</p>
+      <div class="updated" id="qbUpdated"></div>
+    </div>
+  </div>
+
+  <section class="block" style="margin-top:8px" aria-labelledby="spH">
+    <h2 id="spH">Manning vs. Reed</h2>
+    <p class="sub">The quarterback version of the rivalry. Pick a season.</p>
+    <div class="controls"><div class="seg" id="spSeg" aria-label="Season"></div></div>
+    <div class="spot" id="spot"></div>
+  </section>
+
+  <section class="block" aria-labelledby="scH">
+    <h2 id="scH">Efficiency map</h2>
+    <p class="sub">ESPN QBR (opponent-adjusted) against a passing measure. Up and to the right is better; bigger dots mean more total touchdowns. Hover a dot for the full line.</p>
+    <div class="controls"><div class="seg" id="scSeg" aria-label="Horizontal axis"></div></div>
+    <div class="chartcard" id="scCard">
+      <div class="chartwrap"><svg class="scat" id="scat" viewBox="0 0 1100 480" role="img" aria-label="QBR versus passing efficiency"></svg></div>
+      <div class="tip" id="scTip" role="status"></div>
+      <p class="note">2026 season through Week 5. Manning, Mateer and Chambliss had byes in Week 5. Schedules differ: Stockton and Philo each played two lopsided non-Power 4 games early, while Manning, Mateer and Chambliss have faced tougher slates.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="lbH">
+    <h2 id="lbH">Leaderboard</h2>
+    <p class="sub">All 16 SEC quarterbacks who qualify for ESPN QBR. Sort by any column; passer rating uses the NCAA formula.</p>
+    <div class="lbwrap"><table class="lb" id="lb"></table></div>
+  </section>
+</div>
+
+<div id="viewSEC" role="tabpanel" aria-labelledby="tabSEC" hidden>
+  <div class="intro">
+    <h1>Every SEC series, game by game</h1>
+    <div>
+      <p>Texas A&amp;M's all-time record against all 15 SEC opponents, with every result charted by margin. Bars above the line are Aggie wins.</p>
+      <div class="updated" id="secUpdated"></div>
+    </div>
+  </div>
+  <div class="oppbar" id="oppBar" role="group" aria-label="Choose an opponent"></div>
+  <div class="series" id="series"></div>
+  <div class="chartcard" style="margin-top:14px">
+    <div class="charthead">
+      <h2 id="margTitle">Head-to-head results</h2>
+      <div class="seg" id="eraSeg" aria-label="Time span"></div>
+    </div>
+    <div class="chartwrap"><svg class="chart marg" id="marg" viewBox="0 0 1100 380" role="img"></svg></div>
+    <div class="tip" id="secTip" role="status"></div>
+    <p class="note" id="margNote"></p>
+  </div>
+  <div class="hl" id="hl"></div>
+  <section class="block" aria-labelledby="decH" style="margin-top:28px">
+    <h2 id="decH" style="font-size:26px">Record by decade</h2>
+    <p class="sub">A&amp;M's wins, losses and ties in each decade the teams met.</p>
+    <div class="dec" id="dec"></div>
+  </section>
+  <details class="games" id="gamesBox"><summary id="gamesSum">Every game</summary><div class="wrap"><table class="log2" id="log2"></table></div></details>
+  <section class="block" aria-labelledby="glH">
+    <h2 id="glH">All 15 at a glance</h2>
+    <p class="sub">Official records, with vacated wins removed. Select a row to open that series.</p>
+    <div class="controls" style="margin:0 0 12px"><div class="seg" id="glSeg" aria-label="Sort by"></div></div>
+    <div class="lbwrap"><table class="glance" id="glance"></table></div>
+  </section>
+</div>
+
+  <footer>
+    <div>SEC series: game-by-game results from <a href="https://www.winsipedia.com/texas-am">Winsipedia</a> head-to-head pages; 2026 Kentucky, LSU and Arkansas scores from ESPN and 12thman.com. Records are official, so wins vacated by the NCAA are removed (LSU 2012 to 2015, Ole Miss 2014 and 2016, Mississippi State 2018); streaks treat ties and vacated games as breaks, matching Winsipedia. Bowl games are listed under their season year.</div>
+    <div>Sources: SP+ from Bill Connelly's <a href="https://www.espn.com/college-football/story/_/id/49868647/2026-college-football-sp+-rankings-all-138-fbs-teams">ESPN rankings</a>; FEI from Brian Fremeau's <a href="https://bcftoys.com/2026-fei">BCF Toys ratings</a>. Both rate every FBS team, about 130 to 138 a year. Quarterback stats from ESPN player pages and game logs; 2025 PFF grades from PFF, QBR from Saturday Down South and Hook 'em Headlines.</div>
+    <div>2021 to 2025 are final-season ranks, except 2024 SP+, which is Connelly's post-semifinal release. 2026 ranks are in-season and still lean on preseason projections. Elko's 2025 overall SP+ rank is read from ESPN's table order. Elko was A&amp;M's defensive coordinator in 2021 and Duke's head coach in 2022 and 2023. 2026 SP+ is through Week 7 (ESPN's updated table); 2026 FEI is still through Week 6 because Fremeau's Week 7 update was not posted yet.</div>
+    <div>Per-game QBR for Weeks 6 and 7 is taken from each game's ESPN box score. Four game QBRs show n/a because ESPN's box score did not display one in any source I could reach: Leavitt vs. Mississippi State, Jackson at Arkansas vs. Tennessee and at Vanderbilt, and Curtis vs. Arkansas. Season QBR and SEC rank are still ESPN's table after Week 6; the post-Week 7 table had not been published in any accessible source on Oct. 19 (On3 reports Chambliss at 83.5 after Week 7, national rank 11th). Corrections made Oct. 19 from box scores: Reed's Missouri line is 189 yards (ESPN individual stat; team stats show 187), Mateer's Week 6 QBR is 48.6 and he was sacked 3 times, Leavitt threw 2 TD at Kentucky (ESPN and AP; LSU's recap said 1), and Curtis's Week 6 line is now in his totals. Season totals were cross-checked against CBS and FOX season figures for Manning, Reed, Stockton, Chambliss, Mateer, Brown, Curtis and Jackson. Sacks show a dash only where no box score gave a count. Philo, Taylor and Brandon missed Week 7 with injuries; South Carolina had a bye.</div>
+  </footer>
+</main>
+
+<script>
+/* ===== DATA: update the 2026 rows, QBS (below) and UPDATED each week ===== */
+const UPDATED = { week: 7, date: "October 17, 2026", feiWeek: 6 };
+const COACH = {
+  tx: { name: "Sarkisian", school: "Texas", color: "--orange", start: 2021,
+    seasons: {
+      2021: { rec: "5–7",  sp: [48,29,86,6],  fei: [34,35,47,31] },
+      2022: { rec: "8–5",  sp: [7,28,15,44],  fei: [6,17,8,8] },
+      2023: { rec: "12–2", sp: [6,6,13,17],   fei: [7,19,6,3] },
+      2024: { rec: "13–3", sp: [7,13,2,117],  fei: [5,18,3,35] },
+      2025: { rec: "10–3", sp: [17,30,18,31], fei: [19,32,10,15] },
+      2026: { rec: "4–2",  sp: [8,19,5,49],   fei: [8,27,3,66] }
+    } },
+  am: { name: "Elko", school: "Texas A&M", color: "--maroon", start: 2024,
+    seasons: {
+      2024: { rec: "8–5",  sp: [12,20,19,19], fei: [21,29,23,12] },
+      2025: { rec: "11–2", sp: [10,11,14,97], fei: [11,15,9,33] },
+      2026: { rec: "4–3",  sp: [33,46,31,17], fei: [28,54,26,1] }
+    } }
+};
+const H2H = { tx: 2, am: 0 };
+const ELKO_PRIOR = { 2021: "Texas A&M defensive coordinator", 2022: "Head coach at Duke", 2023: "Head coach at Duke" };
+/* ============================================================ */
+
+const YEARS = [2021,2022,2023,2024,2025,2026];
+const UNITS = ["Overall","Offense","Defense","Special teams"];
+const SYS = { sp: "SP+", fei: "FEI" };
+const state = { sys: "sp", unit: 0, align: "year", season: 2026 };
+const $ = s => document.querySelector(s);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+function wl(rec){ const [w,l] = rec.split("–").map(Number); return {w,l}; }
+function total(c, yrs){ let w=0,l=0; yrs.forEach(y=>{const s=COACH[c].seasons[y]; if(s){const r=wl(s.rec); w+=r.w; l+=r.l;}}); return `${w}–${l}`; }
+function tier(v){ return v<=10?1:v<=25?2:v<=50?3:v<=100?4:5; }
+function ord(n){ const s=["th","st","nd","rd"], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
+function avg(a){ return a.reduce((x,y)=>x+y,0)/a.length; }
+
+function seg(el, opts, key, onPick){
+  el.innerHTML = "";
+  opts.forEach(([val,label])=>{
+    const b = document.createElement("button");
+    b.type="button"; b.textContent=label; b.setAttribute("aria-pressed", String(state[key]===val));
+    b.onclick = ()=>{ state[key]=val; [...el.children].forEach(c=>c.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); onPick(); };
+    el.appendChild(b);
+  });
+}
+
+/* ---------- Chart ---------- */
+const W=1100, Hh=420, M={l:64,r:120,t:24,b:52};
+function series(c){
+  const out=[]; const S=COACH[c].seasons;
+  Object.keys(S).map(Number).sort().forEach((y,i)=>{
+    out.push({ year:y, x: state.align==="year" ? y : i+1, v: S[y][state.sys][state.unit], rec:S[y].rec });
+  });
+  return out;
+}
+function drawChart(){
+  const svg=$("#chart"); const tx=series("tx"), am=series("am");
+  const xs = state.align==="year" ? YEARS : [1,2,3,4,5,6];
+  const maxV = Math.max(...tx.map(d=>d.v), ...am.map(d=>d.v));
+  const top = Math.max(30, Math.ceil((maxV+4)/10)*10);
+  const X = x => M.l + (xs.indexOf(x)) * ((W-M.l-M.r)/(xs.length-1));
+  const Y = v => M.t + ((v-1)/(top-1))*(Hh-M.t-M.b);
+  const ticks=[1]; const step = top<=50?10:top<=100?20:30; for(let t=step;t<=top;t+=step) ticks.push(t);
+
+  let g = "";
+  xs.forEach(x=>{ g += `<rect class="band" data-x="${x}" x="${X(x)-40}" y="${M.t-10}" width="80" height="${Hh-M.t-M.b+20}" rx="8"/>`; });
+  ticks.forEach(t=>{ g += `<line class="gl" x1="${M.l}" x2="${W-M.r+30}" y1="${Y(t)}" y2="${Y(t)}"/><text class="ax" x="${M.l-14}" y="${Y(t)+4}" text-anchor="end">${t===1?"No. 1":t}</text>`; });
+  xs.forEach(x=>{ g += `<text class="xl" x="${X(x)}" y="${Hh-18}" text-anchor="middle">${state.align==="year"?x:"Year "+x}</text>`; });
+
+  const pathOf = s => s.map((d,i)=>`${i?"L":"M"}${X(d.x).toFixed(1)},${Y(d.v).toFixed(1)}`).join(" ");
+  const existing = svg.querySelector("#lineTx");
+  if(!existing){
+    svg.innerHTML = `<g id="bg"></g><path id="lineTx" class="line"/><path id="lineAm" class="line"/><g id="pts"></g><g id="hits"></g>`;
+  }
+  svg.querySelector("#bg").innerHTML = g;
+  const lt=svg.querySelector("#lineTx"), la=svg.querySelector("#lineAm");
+  lt.setAttribute("stroke", css("--orange")); la.setAttribute("stroke", css("--maroon"));
+  lt.style.d = `path("${pathOf(tx)}")`; la.style.d = `path("${pathOf(am)}")`;
+  lt.setAttribute("d", pathOf(tx)); la.setAttribute("d", pathOf(am));
+
+  let p="";
+  [["tx",tx],["am",am]].forEach(([c,s])=>{
+    const col = css(COACH[c].color);
+    s.forEach(d=>{
+      p += `<circle class="pt" cx="${X(d.x)}" cy="${Y(d.v)}" r="8" fill="${col}"/>`;
+      const other = (c==="tx"?am:tx).find(o=>o.x===d.x);
+      const better = !other || d.v < other.v || (d.v===other.v && c==="tx");
+      const dy = better ? -16 : 30;
+      p += `<text class="lab" x="${X(d.x)}" y="${Y(d.v)+dy}" text-anchor="middle" fill="${col}">${d.v}</text>`;
+    });
+  });
+  svg.querySelector("#pts").innerHTML = p;
+
+  let h="";
+  xs.forEach(x=>{ h += `<rect data-x="${x}" x="${X(x)-45}" y="${M.t-10}" width="90" height="${Hh-M.t-M.b+30}" fill="transparent" style="cursor:crosshair"/>`; });
+  const hits = svg.querySelector("#hits"); hits.innerHTML = h;
+  const tip=$("#tip");
+  hits.querySelectorAll("rect").forEach(r=>{
+    const x = +r.dataset.x;
+    const show = ()=>{
+      svg.querySelectorAll("rect.band").forEach(b=>b.classList.toggle("on", +b.dataset.x===x));
+      const a = tx.find(d=>d.x===x), b = am.find(d=>d.x===x);
+      const head = state.align==="year" ? x : `Year ${x}`;
+      const line = (lab,d)=> d ? `<div class="row"><span>${lab} ${state.align==="year"?"":"("+d.year+")"}</span><strong>${ord(d.v)} &nbsp;${d.rec}</strong></div>` : `<div class="row"><span>${lab}</span><span>${state.align==="year" && ELKO_PRIOR[x] && lab==="Elko" ? ELKO_PRIOR[x] : "—"}</span></div>`;
+      tip.innerHTML = `<b>${head}</b>${line("Sarkisian",a)}${line("Elko",b)}`;
+      const box = $(".chartcard").getBoundingClientRect(), rb = r.getBoundingClientRect();
+      let left = rb.left - box.left + rb.width/2 + 14; if(left > box.width-200) left = rb.left - box.left - 190;
+      tip.style.left = left+"px"; tip.style.top = "70px"; tip.classList.add("on");
+    };
+    r.addEventListener("mouseenter", show); r.addEventListener("click", ()=>{ show(); if(state.align==="year" && COACH.am.seasons[x]){ state.season=x; renderSeason(); }});
+    r.addEventListener("mouseleave", ()=>{ tip.classList.remove("on"); svg.querySelectorAll("rect.band").forEach(b=>b.classList.remove("on")); });
+  });
+
+  $("#chartTitle").textContent = `${SYS[state.sys]} ${UNITS[state.unit].toLowerCase()} rank`;
+  $("#chartNote").textContent = state.align==="year"
+    ? "Lined up by calendar year. Switch to “By tenure year” to compare each coach's first, second and third seasons."
+    : "Lined up by tenure: Year 1 is 2021 for Sarkisian and 2024 for Elko.";
+}
+
+/* ---------- Faceoff ---------- */
+function renderSeason(){
+  const chips=$("#seasonChips"); chips.innerHTML="";
+  Object.keys(COACH.am.seasons).forEach(y=>{
+    const b=document.createElement("button"); b.type="button"; b.textContent=y+(+y===2026?` · Wk ${UPDATED.week}`:"");
+    b.setAttribute("aria-pressed", String(+y===state.season));
+    b.onclick=()=>{ state.season=+y; renderSeason(); renderGrids(); };
+    chips.appendChild(b);
+  });
+  const a=COACH.tx.seasons[state.season], b=COACH.am.seasons[state.season];
+  let txW=0, amW=0, html="";
+  UNITS.forEach((u,i)=>{
+    const va=a[state.sys][i], vb=b[state.sys][i];
+    const wa = va<vb, wb = vb<va; if(wa) txW++; if(wb) amW++;
+    const pct = v => Math.max(6, 100*(1 - Math.log(v)/Math.log(138)));
+    html += `<div class="fo">
+      <div class="rk tx ${wa?"win":wb?"lose":""}">${va}</div>
+      <div class="bar l"><span style="width:${pct(va)}%"></span></div>
+      <div class="cat">${u}<small>${SYS[state.sys]} rank</small></div>
+      <div class="bar r"><span style="width:${pct(vb)}%"></span></div>
+      <div class="rk am ${wb?"win":wa?"lose":""}">${vb}</div></div>`;
+  });
+  $("#faceoff").innerHTML = html;
+  const who = txW>amW ? `Sarkisian's Texas takes ${state.season}, ${txW} categories to ${amW}.` : amW>txW ? `Elko's A&M takes ${state.season}, ${amW} categories to ${txW}.` : `${state.season} is a split, ${txW} categories each.`;
+  $("#verdict").textContent = `${who} Records: Texas ${a.rec}, A&M ${b.rec}.`;
+  { const rn=$("#rawNote"); if(rn) rn.hidden = state.season!==2026; }
+}
+
+/* ---------- Grids ---------- */
+function renderGrids(){
+  const cards = ["tx","am"].map(c=>{
+    const C=COACH[c]; let rows = `<div></div>${UNITS.map(u=>`<div class="h">${u==="Special teams"?"Special":u}</div>`).join("")}`;
+    YEARS.forEach(y=>{
+      const s=C.seasons[y];
+      rows += `<div class="y">${y}<small>${s? s.rec : ""}</small></div>`;
+      if(!s){ rows += `<div class="cell dim">${ELKO_PRIOR[y]||""}</div>`; return; }
+      s[state.sys].forEach(v=>{ rows += `<button type="button" class="cell tier${tier(v)} ${y===state.season&&COACH.am.seasons[y]?"sel":""}" data-y="${y}" aria-label="${C.name} ${y}: ${ord(v)}" style="border:0;cursor:pointer">${v}</button>`; });
+    });
+    return `<div class="gcard" style="--c:var(${C.color})"><h3>${C.name} at ${C.school}, ${SYS[state.sys]}</h3><div class="gtable">${rows}</div></div>`;
+  });
+  $("#grids").innerHTML = cards.join("");
+  $("#grids").querySelectorAll("button.cell").forEach(b=>b.onclick=()=>{ const y=+b.dataset.y; if(COACH.am.seasons[y]){ state.season=y; renderSeason(); renderGrids(); $("#foH").scrollIntoView({behavior:"smooth",block:"start"}); }});
+  $("#scale").innerHTML = `National rank: ` + [["1–10",1],["11–25",2],["26–50",3],["51–100",4],["101+",5]].map(([t,n])=>`<span class="k tier${n}">${t}</span>`).join("");
+}
+
+/* ---------- Tale of the tape ---------- */
+function renderTape(){
+  const shared=[2024,2025,2026], tx3=[2021,2022,2023];
+  const o = (c,yrs,k)=>avg(yrs.map(y=>COACH[c].seasons[y][k][0]));
+  const rows = [
+    ["Record at school", total("tx",YEARS), total("am",shared), null],
+    ["Head-to-head", `${H2H.tx}–${H2H.am}`, `${H2H.am}–${H2H.tx}`, H2H.tx>H2H.am?"l":H2H.am>H2H.tx?"r":null],
+    ["Record, same seasons (2024–26)", total("tx",shared), total("am",shared), "cmpRec"],
+    ["Avg. SP+ overall, same seasons", o("tx",shared,"sp"), o("am",shared,"sp"), "low"],
+    ["Avg. FEI overall, same seasons", o("tx",shared,"fei"), o("am",shared,"fei"), "low"],
+    ["Record, first three seasons", total("tx",tx3), total("am",shared), "cmpRec"],
+    ["Avg. SP+ overall, first three seasons", o("tx",tx3,"sp"), o("am",shared,"sp"), "low"],
+    ["Avg. FEI overall, first three seasons", o("tx",tx3,"fei"), o("am",shared,"fei"), "low"],
+  ];
+  const pctOf = r => { const {w,l}=wl(r); return w/(w+l); };
+  $("#tape").innerHTML = `<div class="tr hd"><div class="v l" style="color:var(--orange)">Sarkisian</div><div class="m">vs.</div><div class="v" style="color:var(--maroon)">Elko</div></div>` +
+    rows.map(([m,a,b,rule])=>{
+      let best=null;
+      if(rule==="low"){ best = a<b?"l":b<a?"r":null; a=a.toFixed(1); b=b.toFixed(1); }
+      else if(rule==="cmpRec"){ const pa=pctOf(a), pb=pctOf(b); best = pa>pb?"l":pb>pa?"r":null; }
+      else if(rule) best = rule;
+      return `<div class="tr"><div class="v l ${best==="l"?"best":""}">${a}</div><div class="m">${m}</div><div class="v r ${best==="r"?"best":""}">${b}</div></div>`;
+    }).join("");
+}
+
+/* ---------- Hero + boot ---------- */
+function renderHero(){
+  const lab = `${SYS[state.sys]} ${UNITS[state.unit].toLowerCase()} now`;
+  $("#txNow").textContent = COACH.tx.seasons[2026][state.sys][state.unit];
+  $("#amNow").textContent = COACH.am.seasons[2026][state.sys][state.unit];
+  $("#txNowLab").textContent = lab; $("#amNowLab").textContent = lab;
+  $("#txRec").textContent = total("tx",YEARS); $("#amRec").textContent = total("am",[2024,2025,2026]);
+}
+function renderAll(){ drawChart(); renderSeason(); renderGrids(); renderTape(); renderHero(); }
+
+seg($("#sysSeg"), [["sp","SP+"],["fei","FEI"]], "sys", renderAll);
+seg($("#unitSeg"), UNITS.map((u,i)=>[i,u]), "unit", ()=>{ drawChart(); renderHero(); });
+seg($("#alignSeg"), [["year","By season"],["tenure","By tenure year"]], "align", drawChart);
+$("#updated").textContent = `Updated through Week ${UPDATED.week} of 2026 (${UPDATED.date}).`;
+const QBS = [{"name": "Arch Manning", "team": "Texas", "ab": "TEX", "side": "tx", "rec": "4-2", "c": 106, "a": 166, "y": 1295, "td": 11, "int": 5, "sk": 17, "qbr": 65.5, "qbrRk": 8, "ra": 32, "ry": 102, "rtd": 0, "games": [{"d": "9/5", "opp": "vs Texas State", "res": "W 59-7", "c": 20, "a": 27, "y": 305, "td": 4, "int": 1, "sk": 1, "qbr": 92.6}, {"d": "9/12", "opp": "vs No. 1 Ohio State", "res": "W 24-23", "c": 23, "a": 37, "y": 195, "td": 1, "int": 1, "sk": 2, "qbr": 80.6}, {"d": "9/19", "opp": "vs UTSA", "res": "W 30-6", "c": 16, "a": 32, "y": 161, "td": 2, "int": 0, "sk": 1, "qbr": 27.4}, {"d": "9/26", "opp": "at No. 14 Tennessee", "res": "W 20-17", "c": 14, "a": 19, "y": 201, "td": 0, "int": 1, "sk": 6, "qbr": 53.0}, {"d": "10/3", "bye": true}, {"d": "10/10", "opp": "vs Oklahoma (Dallas)", "res": "L 24-27", "c": 19, "a": 31, "y": 260, "td": 3, "int": 2, "sk": 2, "qbr": 71.0}, {"d": "10/17", "opp": "vs Florida", "res": "L 24-27", "c": 14, "a": 20, "y": 173, "td": 1, "int": 0, "sk": 5, "qbr": 20.6}]}, {"name": "Marcel Reed", "team": "Texas A&M", "ab": "TAMU", "side": "am", "rec": "4-3", "c": 112, "a": 201, "y": 1227, "td": 7, "int": 6, "sk": 12, "qbr": 45.5, "qbrRk": 16, "ra": 43, "ry": 175, "rtd": 2, "games": [{"d": "9/5", "opp": "vs Missouri State", "res": "W 50-0", "c": 21, "a": 30, "y": 233, "td": 2, "int": 0, "sk": 2, "qbr": 58.2}, {"d": "9/12", "opp": "vs Arizona State", "res": "W 48-20", "c": 15, "a": 25, "y": 163, "td": 3, "int": 1, "sk": 2, "qbr": 46.0}, {"d": "9/19", "opp": "vs Kentucky", "res": "L 21-31", "c": 26, "a": 49, "y": 236, "td": 1, "int": 2, "sk": 0, "qbr": 62.3}, {"d": "9/26", "opp": "at No. 10 LSU", "res": "L 6-35", "c": 10, "a": 26, "y": 106, "td": 0, "int": 1, "sk": 5, "qbr": 31.3}, {"d": "10/3", "opp": "vs Arkansas", "res": "W 34-7", "c": 13, "a": 19, "y": 170, "td": 0, "int": 0, "sk": 0, "qbr": 82.2}, {"d": "10/10", "opp": "at No. 14 Missouri", "res": "L 6-27", "c": 19, "a": 39, "y": 189, "td": 0, "int": 2, "sk": 3, "qbr": 18.2}, {"d": "10/17", "opp": "vs The Citadel (FCS)", "res": "W 41-0", "c": 8, "a": 13, "y": 130, "td": 1, "int": 0, "sk": null, "qbr": 75.5}]}, {"name": "John Mateer", "team": "Oklahoma", "ab": "OU", "side": "", "rec": "3-3", "c": 114, "a": 175, "y": 1308, "td": 9, "int": 7, "sk": 11, "qbr": 55.8, "qbrRk": 13, "ra": 41, "ry": 78, "rtd": 0, "games": [{"d": "9/4", "opp": "vs UTEP", "res": "W 51-0", "c": 11, "a": 17, "y": 225, "td": 3, "int": 0, "sk": 0, "qbr": 84.4}, {"d": "9/12", "opp": "at Michigan", "res": "L 10-17", "c": 17, "a": 33, "y": 189, "td": 1, "int": 1, "sk": 3, "qbr": 52.0}, {"d": "9/19", "opp": "vs New Mexico", "res": "W 14-6", "c": 19, "a": 25, "y": 238, "td": 2, "int": 2, "sk": 1, "qbr": 60.2}, {"d": "9/26", "opp": "at No. 2 Georgia", "res": "L 13-41", "c": 25, "a": 34, "y": 231, "td": 2, "int": 1, "sk": 3, "qbr": 44.4}, {"d": "10/3", "bye": true}, {"d": "10/10", "opp": "vs No. 1 Texas (Dallas)", "res": "W 27-24", "c": 18, "a": 26, "y": 155, "td": 0, "int": 0, "sk": 3, "qbr": 48.6}, {"d": "10/17", "opp": "vs No. 15 Kentucky", "res": "L 13-21", "c": 24, "a": 40, "y": 270, "td": 1, "int": 3, "sk": null, "qbr": 50.2}]}, {"name": "Keelon Russell", "team": "Alabama", "ab": "BAMA", "side": "", "rec": "5-2", "c": 129, "a": 191, "y": 1746, "td": 12, "int": 4, "sk": 15, "qbr": 90.0, "qbrRk": 2, "ra": 37, "ry": 231, "rtd": 5, "games": [{"d": "9/5", "opp": "vs East Carolina", "res": "W 48-10", "c": 18, "a": 30, "y": 256, "td": 0, "int": 0, "sk": 1, "qbr": 82.2}, {"d": "9/12", "opp": "at Kentucky", "res": "W 45-17", "c": 16, "a": 23, "y": 188, "td": 1, "int": 2, "sk": 4, "qbr": 44.4}, {"d": "9/19", "opp": "vs Florida State", "res": "W 50-36", "c": 23, "a": 30, "y": 320, "td": 3, "int": 0, "sk": 1, "qbr": 97.7}, {"d": "9/26", "opp": "vs South Carolina", "res": "W 49-18", "c": 21, "a": 27, "y": 365, "td": 4, "int": 0, "sk": 2, "qbr": 97.6}, {"d": "10/3", "opp": "at No. 16 Mississippi State", "res": "W 56-23", "c": 16, "a": 22, "y": 285, "td": 3, "int": 0, "sk": 3, "qbr": null}, {"d": "10/10", "opp": "vs No. 2 Georgia", "res": "L 17-20", "c": 16, "a": 30, "y": 185, "td": 1, "int": 0, "sk": 4, "qbr": 77.8}, {"d": "10/17", "opp": "at No. 14 Tennessee", "res": "L 10-26", "c": 19, "a": 29, "y": 147, "td": 0, "int": 2, "sk": null, "qbr": 66.3}]}, {"name": "Aaron Philo", "team": "Florida", "ab": "UF", "side": "", "rec": "5-2", "c": 105, "a": 149, "y": 1341, "td": 9, "int": 3, "sk": 5, "qbr": 74.1, "qbrRk": 6, "ra": 24, "ry": 104, "rtd": 3, "games": [{"d": "9/5", "opp": "vs FAU", "res": "W 66-21", "c": 16, "a": 21, "y": 275, "td": 3, "int": 1, "sk": 0, "qbr": 94.0}, {"d": "9/12", "opp": "vs Campbell (FCS)", "res": "W 52-3", "c": 16, "a": 21, "y": 242, "td": 2, "int": 0, "sk": 0, "qbr": 76.9}, {"d": "9/19", "opp": "at Auburn", "res": "W 44-39", "c": 15, "a": 22, "y": 204, "td": 1, "int": 1, "sk": 2, "qbr": 88.7}, {"d": "9/26", "opp": "vs No. 4 Ole Miss", "res": "W 52-28", "c": 16, "a": 23, "y": 196, "td": 1, "int": 0, "sk": 0, "qbr": 71.5}, {"d": "10/3", "opp": "at No. 25 Missouri", "res": "L 17-45", "c": 21, "a": 34, "y": 197, "td": 1, "int": 0, "sk": 3, "qbr": null}, {"d": "10/10", "opp": "vs South Carolina", "res": "L 19-38", "c": 21, "a": 28, "y": 227, "td": 1, "int": 1, "sk": null, "qbr": 31.9}, {"d": "10/17", "bye": true, "note": "Did not play at No. 7 Texas (shoulder); Tramell Jones Jr. started: 22 of 35, 155 yds, 2 TD, W 27-24"}]}, {"name": "Kamario Taylor", "team": "Mississippi State", "ab": "MSST", "side": "", "rec": "4-2", "c": 102, "a": 154, "y": 1450, "td": 17, "int": 4, "sk": 13, "qbr": 83.3, "qbrRk": 3, "ra": 43, "ry": 159, "rtd": 1, "games": [{"d": "9/5", "opp": "vs ULM", "res": "W 62-13", "c": 22, "a": 34, "y": 354, "td": 4, "int": 0, "sk": 0, "qbr": 89.8}, {"d": "9/12", "opp": "at Minnesota", "res": "W 38-13", "c": 16, "a": 22, "y": 227, "td": 3, "int": 0, "sk": 1, "qbr": 90.0}, {"d": "9/19", "opp": "at South Carolina", "res": "W 41-34", "c": 18, "a": 26, "y": 251, "td": 4, "int": 1, "sk": 3, "qbr": 83.3}, {"d": "9/26", "opp": "vs No. 19 Missouri", "res": "W 31-24", "c": 27, "a": 38, "y": 360, "td": 3, "int": 1, "sk": 4, "qbr": 85.1}, {"d": "10/3", "opp": "vs No. 7 Alabama", "res": "L 23-56", "c": 19, "a": 34, "y": 258, "td": 3, "int": 2, "sk": 5, "qbr": null}, {"d": "10/10", "bye": true, "note": "Bye week"}, {"d": "10/17", "bye": true, "note": "Did not play at No. 22 LSU (injury); Parker Puckett started, L 0-31"}]}, {"name": "Sam Leavitt", "team": "LSU", "ab": "LSU", "side": "", "rec": "5-2", "c": 148, "a": 211, "y": 1784, "td": 14, "int": 8, "sk": 7, "qbr": 81.1, "qbrRk": 5, "ra": 45, "ry": 270, "rtd": 7, "games": [{"d": "9/5", "opp": "vs Clemson", "res": "W 51-10", "c": 16, "a": 28, "y": 230, "td": 1, "int": 1, "sk": 0, "qbr": 91.1}, {"d": "9/12", "opp": "vs Louisiana Tech", "res": "W 45-14", "c": 25, "a": 38, "y": 344, "td": 1, "int": 3, "sk": 5, "qbr": 42.1}, {"d": "9/19", "opp": "at No. 8 Ole Miss", "res": "L 24-32", "c": 16, "a": 27, "y": 158, "td": 1, "int": 1, "sk": 2, "qbr": 86.1}, {"d": "9/26", "opp": "vs No. 23 Texas A&M", "res": "W 35-6", "c": 17, "a": 23, "y": 312, "td": 2, "int": 1, "sk": 0, "qbr": 91.6}, {"d": "10/3", "opp": "vs McNeese State (FCS)", "res": "W 63-14", "c": 18, "a": 23, "y": 176, "td": 3, "int": 1, "sk": 0, "qbr": null}, {"d": "10/10", "opp": "at Kentucky", "res": "L 34-35 OT", "c": 25, "a": 34, "y": 275, "td": 2, "int": 1, "sk": null, "qbr": 82.5}, {"d": "10/17", "opp": "vs No. 16 Mississippi State", "res": "W 31-0", "c": 31, "a": 38, "y": 289, "td": 4, "int": 0, "sk": null, "qbr": null}]}, {"name": "Trinidad Chambliss", "team": "Ole Miss", "ab": "MISS", "side": "", "rec": "5-1", "c": 142, "a": 210, "y": 1676, "td": 14, "int": 4, "sk": 5, "qbr": 83.0, "qbrRk": 4, "ra": 28, "ry": 127, "rtd": 6, "games": [{"d": "9/6", "opp": "vs No. 24 Louisville", "res": "W 41-38", "c": 21, "a": 36, "y": 336, "td": 3, "int": 1, "sk": 0, "qbr": 72.4}, {"d": "9/12", "opp": "vs Charlotte", "res": "W 41-9", "c": 23, "a": 26, "y": 225, "td": 2, "int": 0, "sk": 1, "qbr": 73.2}, {"d": "9/19", "opp": "vs No. 7 LSU", "res": "W 32-24", "c": 33, "a": 48, "y": 363, "td": 2, "int": 1, "sk": 2, "qbr": 92.6}, {"d": "9/26", "opp": "at No. 21 Florida", "res": "L 28-52", "c": 25, "a": 34, "y": 298, "td": 1, "int": 1, "sk": 1, "qbr": 91.1}, {"d": "10/3", "bye": true}, {"d": "10/10", "opp": "at Vanderbilt", "res": "W 52-17", "c": 20, "a": 30, "y": 213, "td": 3, "int": 1, "sk": 1, "qbr": 91.1}, {"d": "10/17", "opp": "vs No. 13 Missouri", "res": "W 31-3", "c": 20, "a": 36, "y": 241, "td": 3, "int": 0, "sk": null, "qbr": 80.4}]}, {"name": "Gunner Stockton", "team": "Georgia", "ab": "UGA", "side": "", "rec": "6-1", "c": 117, "a": 158, "y": 1570, "td": 16, "int": 4, "sk": 6, "qbr": 90.4, "qbrRk": 1, "ra": 20, "ry": 160, "rtd": 1, "games": [{"d": "9/5", "opp": "vs Tennessee State (FCS)", "res": "W 63-3", "c": 15, "a": 16, "y": 202, "td": 3, "int": 0, "sk": 0, "qbr": 87.0}, {"d": "9/12", "opp": "vs WKU", "res": "W 70-20", "c": 13, "a": 16, "y": 234, "td": 5, "int": 0, "sk": 0, "qbr": 95.9}, {"d": "9/19", "opp": "at Arkansas", "res": "W 45-17", "c": 10, "a": 13, "y": 147, "td": 1, "int": 0, "sk": 3, "qbr": 97.5}, {"d": "9/26", "opp": "vs Oklahoma", "res": "W 41-13", "c": 14, "a": 25, "y": 171, "td": 1, "int": 1, "sk": 1, "qbr": 67.7}, {"d": "10/3", "opp": "vs Vanderbilt", "res": "W 38-14", "c": 25, "a": 32, "y": 295, "td": 3, "int": 0, "sk": 1, "qbr": null}, {"d": "10/10", "opp": "at No. 6 Alabama", "res": "W 20-17", "c": 18, "a": 22, "y": 249, "td": 1, "int": 1, "sk": 1, "qbr": 94.4}, {"d": "10/17", "opp": "vs Auburn", "res": "L 24-27", "c": 22, "a": 34, "y": 272, "td": 2, "int": 2, "sk": null, "qbr": 64.6}]}, {"name": "KJ Jackson", "team": "Arkansas", "ab": "ARK", "side": "", "rec": "3-4", "c": 131, "a": 215, "y": 1444, "td": 7, "int": 4, "sk": 12, "qbr": 46.9, "qbrRk": 15, "ra": 39, "ry": 140, "rtd": 3, "games": [{"d": "9/5", "opp": "vs North Alabama (FCS)", "res": "W 31-14", "c": 24, "a": 35, "y": 267, "td": 3, "int": 1, "sk": 3, "qbr": 32.0}, {"d": "9/12", "opp": "at No. 20 Utah", "res": "L 10-43", "c": 14, "a": 34, "y": 139, "td": 0, "int": 1, "sk": 1, "qbr": 41.5}, {"d": "9/19", "opp": "vs No. 2 Georgia", "res": "L 17-45", "c": 20, "a": 27, "y": 212, "td": 1, "int": 0, "sk": 2, "qbr": 69.1}, {"d": "9/26", "opp": "vs Tulsa", "res": "W 34-6", "c": 24, "a": 36, "y": 309, "td": 1, "int": 1, "sk": 3, "qbr": 71.2}, {"d": "10/3", "opp": "at Texas A&M", "res": "L 7-34", "c": 13, "a": 25, "y": 111, "td": 1, "int": 1, "sk": 1, "qbr": 24.2}, {"d": "10/10", "opp": "vs No. 15 Tennessee", "res": "L 17-24", "c": 15, "a": 27, "y": 155, "td": 1, "int": 0, "sk": 2, "qbr": null}, {"d": "10/17", "opp": "at Vanderbilt", "res": "W 31-21", "c": 21, "a": 31, "y": 251, "td": 0, "int": 0, "sk": 0, "qbr": null}]}, {"name": "Austin Simmons", "team": "Missouri", "ab": "MIZ", "side": "", "rec": "5-2", "c": 132, "a": 209, "y": 1773, "td": 14, "int": 2, "sk": 8, "qbr": 71.5, "qbrRk": 7, "ra": 13, "ry": 18, "rtd": 0, "games": [{"d": "9/3", "opp": "vs Arkansas-Pine Bluff (FCS)", "res": "W 54-14", "c": 17, "a": 19, "y": 252, "td": 4, "int": 0, "sk": 1, "qbr": 93.6}, {"d": "9/11", "opp": "at Kansas", "res": "W 38-21", "c": 19, "a": 29, "y": 292, "td": 3, "int": 0, "sk": 0, "qbr": 86.0}, {"d": "9/19", "opp": "vs Troy", "res": "W 27-17", "c": 11, "a": 20, "y": 108, "td": 1, "int": 0, "sk": 1, "qbr": 19.1}, {"d": "9/26", "opp": "at No. 24 Mississippi State", "res": "L 24-31", "c": 23, "a": 39, "y": 295, "td": 3, "int": 0, "sk": 2, "qbr": 73.0}, {"d": "10/3", "opp": "vs No. 8 Florida", "res": "W 45-17", "c": 23, "a": 30, "y": 340, "td": 2, "int": 0, "sk": 2, "qbr": 91.5}, {"d": "10/10", "opp": "vs Texas A&M", "res": "W 27-6", "c": 14, "a": 28, "y": 147, "td": 1, "int": 1, "sk": null, "qbr": 45.7}, {"d": "10/17", "opp": "at No. 9 Ole Miss", "res": "L 3-31", "c": 25, "a": 44, "y": 339, "td": 0, "int": 1, "sk": 2, "qbr": 63.2}]}, {"name": "Byrum Brown", "team": "Auburn", "ab": "AUB", "side": "", "rec": "4-2", "c": 119, "a": 185, "y": 1205, "td": 8, "int": 7, "sk": 18, "qbr": 64.8, "qbrRk": 9, "ra": 81, "ry": 459, "rtd": 5, "games": [{"d": "9/5", "opp": "vs Baylor (Atlanta)", "res": "W 17-16", "c": 26, "a": 35, "y": 259, "td": 0, "int": 3, "sk": 5, "qbr": 55.1}, {"d": "9/12", "opp": "vs Southern Miss", "res": "W 43-8", "c": 18, "a": 29, "y": 226, "td": 2, "int": 0, "sk": 1, "qbr": 80.5}, {"d": "9/19", "opp": "vs Florida", "res": "L 39-44", "c": 20, "a": 35, "y": 271, "td": 3, "int": 1, "sk": 7, "qbr": 73.9}, {"d": "9/26", "opp": "vs Vanderbilt", "res": "W 21-15", "c": 18, "a": 27, "y": 140, "td": 1, "int": 1, "sk": 1, "qbr": 71.4}, {"d": "10/3", "opp": "at No. 17 Tennessee", "res": "L 14-24", "c": 22, "a": 33, "y": 159, "td": 1, "int": 2, "sk": 4, "qbr": null}, {"d": "10/10", "bye": true, "note": "Bye week"}, {"d": "10/17", "opp": "at No. 1 Georgia", "res": "W 27-24", "c": 15, "a": 26, "y": 150, "td": 1, "int": 0, "sk": null, "qbr": 86.6}]}, {"name": "Jared Curtis", "team": "Vanderbilt", "ab": "VAN", "side": "", "rec": "3-4", "c": 101, "a": 161, "y": 1242, "td": 6, "int": 7, "sk": 11, "qbr": 57.9, "qbrRk": 11, "ra": 41, "ry": 131, "rtd": 2, "games": [{"d": "9/5", "opp": "vs Austin Peay (FCS), relief", "res": "W", "c": 7, "a": 9, "y": 60, "td": 0, "int": 0, "sk": null, "qbr": null}, {"d": "9/12", "opp": "vs Delaware, relief", "res": "W", "c": 14, "a": 22, "y": 210, "td": 1, "int": 0, "sk": null, "qbr": null}, {"d": "9/19", "opp": "vs NC State", "res": "W 35-31", "c": 20, "a": 34, "y": 277, "td": 3, "int": 2, "sk": 0, "qbr": 50.6}, {"d": "9/26", "opp": "at Auburn", "res": "L 15-21", "c": 22, "a": 33, "y": 199, "td": 0, "int": 1, "sk": 4, "qbr": 77.1}, {"d": "10/3", "bye": true, "note": "Did not play at No. 2 Georgia (bruised knee); Blaze Berlowitz started, L 14-38"}, {"d": "10/10", "opp": "vs No. 9 Ole Miss", "res": "L 17-52", "c": 19, "a": 32, "y": 222, "td": 1, "int": 2, "sk": 3, "qbr": 47.5}, {"d": "10/17", "opp": "vs Arkansas", "res": "L 21-31", "c": 19, "a": 31, "y": 274, "td": 1, "int": 2, "sk": 1, "qbr": null}], "rushNote": "Week 7 rushing yards not yet available"}, {"name": "LaNorris Sellers", "team": "South Carolina", "ab": "SC", "side": "", "rec": "3-3", "c": 115, "a": 187, "y": 1338, "td": 12, "int": 4, "sk": 7, "qbr": 62.5, "qbrRk": 10, "ra": 53, "ry": 411, "rtd": 2, "games": [{"d": "9/5", "opp": "vs Kent State", "res": "W 57-0", "c": 19, "a": 23, "y": 270, "td": 3, "int": 0, "sk": 1, "qbr": 91.9}, {"d": "9/12", "opp": "vs Towson (FCS)", "res": "W 45-9", "c": 10, "a": 23, "y": 96, "td": 0, "int": 1, "sk": 1, "qbr": 28.0}, {"d": "9/19", "opp": "vs Mississippi State", "res": "L 34-41", "c": 25, "a": 40, "y": 282, "td": 2, "int": 2, "sk": 3, "qbr": 37.7}, {"d": "9/26", "opp": "at No. 8 Alabama", "res": "L 18-49", "c": 18, "a": 30, "y": 185, "td": 1, "int": 1, "sk": 1, "qbr": 79.4}, {"d": "10/3", "opp": "vs No. 24 Kentucky", "res": "L 34-35 OT", "c": 20, "a": 36, "y": 226, "td": 2, "int": 0, "sk": 1, "qbr": 54.4}, {"d": "10/10", "opp": "at No. 16 Florida", "res": "W 38-19", "c": 23, "a": 35, "y": 279, "td": 4, "int": 0, "sk": null, "qbr": 83.6}, {"d": "10/17", "bye": true, "note": "Bye week"}]}, {"name": "Kenny Minchey", "team": "Kentucky", "ab": "UK", "side": "", "rec": "6-1", "c": 141, "a": 206, "y": 1552, "td": 13, "int": 1, "sk": 11, "qbr": 57.1, "qbrRk": 12, "ra": 25, "ry": 9, "rtd": 1, "games": [{"d": "9/5", "opp": "vs Youngstown State (FCS)", "res": "W 45-13", "c": 18, "a": 27, "y": 301, "td": 4, "int": 0, "sk": 0, "qbr": 66.1}, {"d": "9/12", "opp": "vs No. 12 Alabama", "res": "L 17-45", "c": 18, "a": 31, "y": 146, "td": 1, "int": 1, "sk": 4, "qbr": 8.1}, {"d": "9/19", "opp": "at No. 9 Texas A&M", "res": "W 31-21", "c": 14, "a": 18, "y": 252, "td": 2, "int": 0, "sk": 2, "qbr": 90.0}, {"d": "9/26", "opp": "vs South Alabama", "res": "W 45-21", "c": 19, "a": 25, "y": 177, "td": 1, "int": 0, "sk": 2, "qbr": 8.5}, {"d": "10/3", "opp": "at South Carolina", "res": "W 35-34 OT", "c": 28, "a": 41, "y": 272, "td": 3, "int": 0, "sk": 3, "qbr": 77.9}, {"d": "10/10", "opp": "vs No. 10 LSU", "res": "W 35-34 OT", "c": 23, "a": 36, "y": 246, "td": 0, "int": 0, "sk": null, "qbr": 80.9}, {"d": "10/17", "opp": "at Oklahoma", "res": "W 21-13", "c": 21, "a": 28, "y": 158, "td": 2, "int": 0, "sk": null, "qbr": 71.5}]}, {"name": "Faizon Brandon", "team": "Tennessee", "ab": "TENN", "side": "", "rec": "6-1", "c": 61, "a": 101, "y": 697, "td": 7, "int": 1, "sk": 15, "qbr": 47.0, "qbrRk": 14, "ra": 53, "ry": 130, "rtd": 3, "games": [{"d": "9/5", "opp": "vs Furman (FCS)", "res": "W 56-9", "c": 13, "a": 17, "y": 226, "td": 3, "int": 0, "sk": 1, "qbr": 87.2}, {"d": "9/12", "opp": "at Georgia Tech", "res": "W 45-24", "c": 10, "a": 21, "y": 148, "td": 2, "int": 0, "sk": 1, "qbr": 78.7}, {"d": "9/19", "opp": "vs Kennesaw State", "res": "W 42-9", "c": 18, "a": 26, "y": 178, "td": 1, "int": 0, "sk": 1, "qbr": 46.4}, {"d": "9/26", "opp": "vs No. 1 Texas", "res": "L 17-20", "c": 17, "a": 29, "y": 145, "td": 1, "int": 0, "sk": 10, "qbr": null}, {"d": "10/3", "opp": "vs Auburn (benched in 2nd quarter)", "res": "W 24-14", "c": 3, "a": 8, "y": 0, "td": 0, "int": 1, "sk": 2, "qbr": null}, {"d": "10/10", "bye": true, "note": "Did not play at Arkansas (shoulder); George MacIntyre started: 18 of 29, 247 yds, 1 TD, 2 INT, W 24-17"}, {"d": "10/17", "bye": true, "note": "Did not play vs No. 6 Alabama (shoulder); George MacIntyre started: 21 of 31, 197 yds, 0 TD, 1 INT, W 26-10"}]}];
+
+const REED25 = {
+  tx:{ name:"Arch Manning", rec:"10–3", c:248,a:404,y:3163,td:26,int:7,sk:23,ra:92,ry:399,rtd:10,qbr:70.6,pff:"87.3 overall", pffNote:"top 15 nationally" },
+  am:{ name:"Marcel Reed", rec:"11–2", c:234,a:377,y:3169,td:25,int:12,sk:17,ra:104,ry:493,rtd:6,qbr:77.9,pff:"64.0 passing", pffNote:"105th nationally" }
+};
+const qs = { sort:"qbr", dir:-1, open:null, x:"ypa", spot:2026 };
+const rating = q => (8.4*q.y + 330*q.td + 100*q.c - 200*q.int)/q.a;
+const derive = q => ({...q, pct:q.c/q.a, ypa:q.y/q.a, rtg:rating(q), tot:q.td+(q.rtd??0), ratio:q.int? q.td/q.int : q.td});
+function tabTo(which){
+  const map={coach:["#viewCoach","#tabCoach"],qb:["#viewQB","#tabQB"],sec:["#viewSEC","#tabSEC"]};
+  Object.entries(map).forEach(([k,[v,t]])=>{ $(v).hidden = k!==which; $(t).setAttribute("aria-selected", String(k===which)); });
+  if(which==="qb"){ drawScatter(); }
+  if(which==="sec" && window.secRender){ window.secRender(); }
+}
+$("#tabCoach").onclick=()=>tabTo("coach"); $("#tabQB").onclick=()=>tabTo("qb"); $("#tabSEC").onclick=()=>tabTo("sec");
+
+function renderSpot(){
+  let A,B,head;
+  if(qs.spot===2025){ A=derive(REED25.tx); B=derive(REED25.am); head="Full 2025 season, 13 games each"; }
+  else { A=derive(QBS.find(q=>q.side==="tx")); B=derive(QBS.find(q=>q.side==="am")); head=`2026 through Week ${UPDATED.week}`; }
+  const rows=[
+    ["Completion %", A.pct, B.pct, 1, v=>(v*100).toFixed(1)],
+    ["Passing yards", A.y, B.y, 1, v=>v.toLocaleString()],
+    ["Yards per attempt", A.ypa, B.ypa, 1, v=>v.toFixed(1)],
+    ["Passing TD", A.td, B.td, 1, v=>v],
+    ["Interceptions", A.int, B.int, -1, v=>v],
+    ["Passer rating", A.rtg, B.rtg, 1, v=>v.toFixed(1)],
+    ["ESPN QBR", A.qbr, B.qbr, 1, v=>v.toFixed(1)],
+    ["Rushing yards", A.ry, B.ry, 1, v=>v],
+    ["Total TD", A.tot, B.tot, 1, v=>v],
+    ["Sacks taken", A.sk, B.sk, -1, v=>v]
+  ];
+  let aw=0,bw=0;
+  const body = rows.map(([lab,a,b,better,f])=>{
+    const aWin = better>0 ? a>b : a<b, bWin = better>0 ? b>a : b<a; if(aWin)aw++; if(bWin)bw++;
+    const mx=Math.max(a,b)||1;
+    return `<div class="srow"><div class="n tx ${aWin?"w":"l"}">${f(a)}</div>
+      <div class="bar l"><span style="width:${Math.max(4,a/mx*100)}%"></span></div>
+      <div class="lab">${lab}${better<0?"<small>lower is better</small>":""}</div>
+      <div class="bar r"><span style="width:${Math.max(4,b/mx*100)}%"></span></div>
+      <div class="n am ${bWin?"w":"l"}">${f(b)}</div></div>`;
+  }).join("");
+  const extra = qs.spot===2025 ? `PFF: Manning ${REED25.tx.pff} (${REED25.tx.pffNote}); Reed ${REED25.am.pff} (${REED25.am.pffNote}). Texas won the meeting 27–17. 2025 QBR via Saturday Down South's efficiency table.` : `Team records: Texas ${A.rec}, A&M ${B.rec}. Manning\'s passer rating uses the NCAA formula, which runs much higher than the NFL scale and rewards yards and TDs even on low volume (14 of 20 vs. Florida grades 159.2). ESPN QBR, which counts sacks, fumbles and game situation, scored those same two games 71.0 and 20.6. Reed\'s rushing total is missing The Citadel game.`;
+  $("#spot").innerHTML = `<div class="top"><div class="who" style="color:var(--orange)">Manning<small>Texas, ${A.rec}</small></div><div class="m" style="font-weight:700;color:var(--muted)">${aw}–${bw}</div><div class="who r" style="color:var(--maroon)">Reed<small>Texas A&amp;M, ${B.rec}</small></div></div>${body}<div class="spotnote">${head}. Categories won: Manning ${aw}, Reed ${bw}. ${extra}</div>`;
+}
+
+const XOPT = { ypa:["Yards per attempt", d=>d.ypa, v=>v.toFixed(1)], pct:["Completion %", d=>d.pct*100, v=>v.toFixed(1)+"%"], rtg:["Passer rating", d=>d.rtg, v=>v.toFixed(0)] };
+function drawScatter(){
+  const svg=$("#scat"), W=1100,H=480,m={l:70,r:30,t:24,b:60};
+  const D=QBS.map(derive); const [xl,xf,xfmt]=XOPT[qs.x];
+  const xs=D.map(xf), ys=D.map(d=>d.qbr);
+  const x0=Math.floor(Math.min(...xs)*0.97), x1=Math.ceil(Math.max(...xs)*1.02);
+  const y0=Math.floor((Math.min(...ys)-5)/10)*10, y1=100;
+  const X=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r), Y=v=>m.t+(y1-v)/(y1-y0)*(H-m.t-m.b);
+  let g="";
+  for(let t=y0;t<=y1;t+=10) g+=`<line class="gl" x1="${m.l}" x2="${W-m.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="${css('--grid')}"/><text x="${m.l-12}" y="${Y(t)+4}" text-anchor="end" font-size="13" fill="${css('--muted')}">${t}</text>`;
+  const step=(x1-x0)/6;
+  for(let i=0;i<=6;i++){const v=x0+i*step; g+=`<text x="${X(v)}" y="${H-30}" text-anchor="middle" font-size="13" fill="${css('--muted')}">${xfmt(v)}</text>`;}
+  g+=`<text x="${(m.l+W-m.r)/2}" y="${H-6}" text-anchor="middle" font-size="15" font-weight="600" fill="${css('--ink')}">${xl}</text>`;
+  g+=`<text transform="translate(18 ${(m.t+H-m.b)/2}) rotate(-90)" text-anchor="middle" font-size="15" font-weight="600" fill="${css('--ink')}">ESPN QBR</text>`;
+  const ax=xs.reduce((a,b)=>a+b)/xs.length, ay=ys.reduce((a,b)=>a+b)/ys.length;
+  g+=`<line x1="${X(ax)}" x2="${X(ax)}" y1="${m.t}" y2="${H-m.b}" stroke="${css('--rule')}" stroke-dasharray="4 5"/><line x1="${m.l}" x2="${W-m.r}" y1="${Y(ay)}" y2="${Y(ay)}" stroke="${css('--rule')}" stroke-dasharray="4 5"/>`;
+  g+=`<text x="${W-m.r-6}" y="${m.t+14}" text-anchor="end" font-size="13" fill="${css('--muted')}">Group average lines dashed</text>`;
+  const order=[...D.keys()].sort((a,b)=>(D[a].side?1:0)-(D[b].side?1:0));
+  const placed=[]; let dots="", labs="";
+  const pts=order.map(i=>({i, d:D[i], cx:X(xs[i]), cy:Y(D[i].qbr), r:6+D[i].tot*0.9}));
+  pts.forEach(o=>{
+    const col=o.d.side==="tx"?css('--orange'):o.d.side==="am"?css('--maroon'):css('--t2');
+    dots+=`<circle class="dot" data-i="${o.i}" cx="${o.cx}" cy="${o.cy}" r="${o.r}" fill="${col}" fill-opacity="${o.d.side?1:.75}" stroke="${css('--surface')}" stroke-width="2"/>`;
+  });
+  [...pts].sort((a,b)=>a.cy-b.cy).forEach(o=>{
+    const col=o.d.side==="tx"?css('--orange'):o.d.side==="am"?css('--maroon'):css('--ink');
+    const last=o.d.name.split(" ").slice(-1)[0], w=last.length*8.2;
+    const left = o.cx > W-m.r-w-o.r-10;
+    let lx = left ? o.cx-o.r-6-w : o.cx+o.r+6, ly=o.cy+5;
+    const hit = (x,y)=>placed.some(p=>x<p.x+p.w+4 && x+w+4>p.x && Math.abs(y-p.y)<16) || pts.some(q=>q!==o && x<q.cx+q.r && x+w>q.cx-q.r && Math.abs(y-5-q.cy)<q.r+6);
+    const up=[o.cx-w/2,o.cy-o.r-8], dn=[o.cx-w/2,o.cy+o.r+18]; const cands = left ? [up,dn,[lx,ly],[lx,ly-18],[lx,ly+18]] : [[lx,ly],[lx,ly-18],[lx,ly+18],up,dn,[lx,ly-36],[lx,ly+36]];
+    for(const [cx,cy] of cands){ if(!hit(cx,cy)){ lx=cx; ly=cy; break; } }
+    placed.push({x:lx,y:ly,w});
+    labs+=`<text class="nm" x="${lx}" y="${ly}" fill="${col}">${last}</text>`;
+  });
+  g+=dots+labs;
+  svg.innerHTML=g;
+  const tip=$("#scTip"), card=$("#scCard");
+  svg.querySelectorAll(".dot").forEach(c=>{
+    const d=D[+c.dataset.i];
+    c.addEventListener("mouseenter",()=>{
+      c.setAttribute("r", +c.getAttribute("r")+3);
+      tip.innerHTML=`<b>${d.name}</b><div class="row"><span>${d.team}</span><span>${d.rec}</span></div><div class="row"><span>${d.c}/${d.a}, ${d.y.toLocaleString()} yds</span><span>${d.td} TD, ${d.int} INT</span></div><div class="row"><span>QBR ${d.qbr}</span><span>${ord(d.qbrRk)} in SEC</span></div><div class="row"><span>Total TD (pass + rush)</span><span>${d.tot}</span></div>`;
+      const cb=card.getBoundingClientRect(), b=c.getBoundingClientRect();
+      let left=b.right-cb.left+10; if(left>cb.width-250) left=b.left-cb.left-250;
+      tip.style.left=left+"px"; tip.style.top=Math.max(10,b.top-cb.top-20)+"px"; tip.classList.add("on");
+    });
+    c.addEventListener("mouseleave",()=>{ c.setAttribute("r", +c.getAttribute("r")-3); tip.classList.remove("on"); });
+  });
+}
+
+const COLS=[
+  ["name","Quarterback",null],["rec","Record",null],["pct","Cmp %",v=>(v*100).toFixed(1)],["y","Pass yds",v=>v.toLocaleString()],
+  ["ypa","Y/A",v=>v.toFixed(1)],["td","TD",v=>v],["int","INT",v=>v],["rtg","Rating",v=>v.toFixed(1)],
+  ["qbr","QBR",null],["qbrRk","SEC QBR rank",v=>ord(v)],["ry","Rush yds",v=>v],["rtd","Rush TD",v=>v],["tot","Total TD",v=>v]
+];
+const LOWBEST=new Set(["int","qbrRk"]);
+function qbrStyle(v){ const t=v>=85?1:v>=75?2:v>=60?3:4; return `background:var(--t${t});color:var(--t${t}x)`; }
+function renderLB(){
+  const D=QBS.map(derive);
+  const nv=v=>v==null?-Infinity:v; if(qs.sort!=="name"&&qs.sort!=="rec") D.sort((a,b)=>{const x=nv(a[qs.sort]),y=nv(b[qs.sort]); if(x===y) return 0; if(x===-Infinity) return 1; if(y===-Infinity) return -1; return (x-y)*qs.dir;}); else D.sort((a,b)=>String(a[qs.sort]).localeCompare(String(b[qs.sort]))*qs.dir);
+  const best={}; COLS.forEach(([k])=>{ if(k==="name"||k==="rec") return; const vals=D.map(d=>d[k]).filter(v=>v!=null); best[k]= LOWBEST.has(k)?Math.min(...vals):Math.max(...vals); });
+  let h=`<thead><tr>${COLS.map(([k,l])=>`<th scope="col" ${qs.sort===k?`aria-sort="${qs.dir<0?"descending":"ascending"}"`:""}><button type="button" data-k="${k}">${l}${qs.sort===k?(qs.dir<0?" ▼":" ▲"):""}</button></th>`).join("")}</tr></thead><tbody>`;
+  D.forEach(d=>{
+    h+=`<tr class="q ${d.side}" data-n="${d.name}" tabindex="0" aria-expanded="${qs.open===d.name}">`;
+    COLS.forEach(([k,l,f])=>{
+      if(k==="name") h+=`<td><span class="nm">${d.name}</span><span class="tm">${d.ab}</span></td>`;
+      else if(k==="qbr") h+=`<td><span class="qbrpill" style="${qbrStyle(d.qbr)}">${d.qbr.toFixed(1)}</span></td>`;
+      else { const v=d[k]==null?'<span style="color:var(--muted)">n/a</span>':(f?f(d[k]):d[k]); const note=(d.rushNote&&k==="ry")?`<sup title="${typeof d.rushNote==="string"?d.rushNote:"Rushing not yet available"}">*</sup>`:""; h+=`<td class="${best[k]===d[k]?"rk1":""}">${v}${note}</td>`; }
+    });
+    h+=`</tr>`;
+    if(qs.open===d.name){
+      h+=`<tr class="log"><td colspan="${COLS.length}"><div class="glog"><table><thead><tr><th>Date</th><th>Opponent</th><th>Result</th><th>Cmp/Att</th><th>Yds</th><th>Y/A</th><th>TD</th><th>INT</th><th>Sacks</th><th>Rating</th><th>QBR</th></tr></thead><tbody>${
+        d.games.map(g=> g.bye ? `<tr><td>${g.d}</td><td colspan="10" style="text-align:left;color:var(--muted);font-style:italic">${g.note||"Bye week"}</td></tr>` : `<tr><td>${g.d}</td><td>${g.opp}</td><td>${g.res}</td><td>${g.c}/${g.a}</td><td>${g.y}</td><td>${(g.y/g.a).toFixed(1)}</td><td>${g.td}</td><td>${g.int}</td><td>${g.sk==null?"–":g.sk}</td><td>${rating(g).toFixed(1)}</td><td>${g.qbr==null?'<span style="color:var(--muted)">n/a</span>':`<span class="qbrpill" style="${qbrStyle(g.qbr)}">${g.qbr.toFixed(1)}</span>`}</td></tr>`).join("")
+      }</tbody></table></div></td></tr>`;
+    }
+  });
+  h+="</tbody>";
+  const t=$("#lb"); t.innerHTML=h;
+  t.querySelectorAll("th button").forEach(b=>b.onclick=()=>{ const k=b.dataset.k; if(qs.sort===k) qs.dir*=-1; else { qs.sort=k; qs.dir = (LOWBEST.has(k)||k==="name"||k==="rec")?1:-1; } renderLB(); });
+  t.querySelectorAll("tr.q").forEach(r=>{ const tog=()=>{ qs.open = qs.open===r.dataset.n?null:r.dataset.n; renderLB(); }; r.onclick=tog; r.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); tog(); } }; });
+}
+function segQ(el, opts, key, cb){
+  el.innerHTML=""; opts.forEach(([v,l])=>{ const b=document.createElement("button"); b.type="button"; b.textContent=l; b.setAttribute("aria-pressed",String(qs[key]===v));
+    b.onclick=()=>{ qs[key]=v; [...el.children].forEach(c=>c.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); cb(); }; el.appendChild(b); });
+}
+segQ($("#spSeg"), [[2026,`2026 · Week ${UPDATED.week}`],[2025,"2025 full season"]], "spot", renderSpot);
+segQ($("#scSeg"), [["ypa","Yards per attempt"],["pct","Completion %"],["rtg","Passer rating"]], "x", drawScatter);
+$("#qbUpdated").textContent = `Updated through Week ${UPDATED.week} of 2026 (${UPDATED.date}).`;
+renderSpot(); renderLB();
+
+renderAll();
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", ()=>{ drawChart(); if(!$("#viewQB").hidden) drawScatter(); });
+</script>
+<script>
+/* ===== SEC SERIES DATA (Winsipedia game lists + 2026 box scores). Rows: [season, A&M pts, opp pts, site, note] ===== */
+const SEC_UPDATED = "October 19, 2026 (through Week 7)";
+const SEC_NEXT = "alabama";
+const SEC_GAMES = {"alabama":[[1941,21,29,"Dallas, TX","Cotton Bowl"],[1967,20,16,"Dallas, TX","Cotton Bowl"],[1985,10,23,"Birmingham, AL",""],[1988,10,30,"College Station, TX",""],[2012,29,24,"Tuscaloosa, AL",""],[2013,42,49,"College Station, TX",""],[2014,0,59,"Tuscaloosa, AL",""],[2015,23,41,"College Station, TX",""],[2016,14,33,"Tuscaloosa, AL",""],[2017,19,27,"College Station, TX",""],[2018,23,45,"Tuscaloosa, AL",""],[2019,28,47,"College Station, TX",""],[2020,24,52,"Tuscaloosa, AL",""],[2021,41,38,"College Station, TX",""],[2022,20,24,"Tuscaloosa, AL",""],[2023,20,26,"College Station, TX",""]],"arkansas":[[1903,6,0,"Houston, TX",""],[1910,0,5,"Fayetteville, AR",""],[1912,27,0,"Dallas, TX",""],[1927,40,6,"College Station, TX",""],[1928,12,27,"Fayetteville, AR",""],[1929,13,14,"College Station, TX",""],[1930,0,13,"Little Rock, AR",""],[1934,7,7,"College Station, TX",""],[1935,7,14,"Little Rock, AR",""],[1936,0,18,"College Station, TX",""],[1937,13,26,"Fayetteville, AR",""],[1938,13,7,"College Station, TX",""],[1939,27,0,"Fayetteville, AR",""],[1940,17,0,"College Station, TX",""],[1941,7,0,"Little Rock, AR",""],[1942,41,0,"College Station, TX",""],[1943,13,0,"Fayetteville, AR",""],[1944,6,7,"College Station, TX",""],[1945,34,0,"Fayetteville, AR",""],[1946,0,7,"College Station, TX",""],[1947,21,21,"Fayetteville, AR",""],[1948,6,28,"College Station, TX",""],[1949,6,27,"Fayetteville, AR",""],[1950,42,13,"College Station, TX",""],[1951,21,33,"Fayetteville, AR",""],[1952,31,12,"College Station, TX",""],[1953,14,41,"Little Rock, AR",""],[1954,7,14,"College Station, TX",""],[1955,7,7,"Fayetteville, AR",""],[1956,27,0,"College Station, TX",""],[1957,7,6,"Fayetteville, AR",""],[1958,8,21,"College Station, TX",""],[1959,7,12,"Fayetteville, AR",""],[1960,3,7,"College Station, TX",""],[1961,8,15,"Fayetteville, AR",""],[1962,7,17,"College Station, TX",""],[1963,7,21,"Little Rock, AR",""],[1964,0,17,"College Station, TX",""],[1965,0,31,"Little Rock, AR",""],[1966,0,34,"College Station, TX",""],[1967,33,21,"Fayetteville, AR",""],[1968,22,25,"College Station, TX",""],[1969,13,35,"Fayetteville, AR",""],[1970,6,45,"College Station, TX",""],[1971,17,9,"Little Rock, AR",""],[1972,10,7,"College Station, TX",""],[1973,10,14,"Fayetteville, AR",""],[1974,20,10,"College Station, TX",""],[1975,6,31,"Little Rock, AR",""],[1976,31,10,"Little Rock, AR",""],[1977,20,26,"College Station, TX",""],[1978,7,26,"Little Rock, AR",""],[1979,10,22,"College Station, TX",""],[1980,24,27,"Fayetteville, AR",""],[1981,7,10,"College Station, TX",""],[1982,0,35,"Little Rock, AR",""],[1983,36,23,"College Station, TX",""],[1984,0,28,"Fayetteville, AR",""],[1985,10,6,"College Station, TX",""],[1986,10,14,"Little Rock, AR",""],[1987,14,0,"College Station, TX",""],[1988,20,25,"Fayetteville, AR",""],[1989,22,23,"College Station, TX",""],[1990,20,16,"Fayetteville, AR",""],[1991,13,3,"College Station, TX",""],[2009,19,47,"Arlington, TX",""],[2010,17,24,"Arlington, TX",""],[2011,38,42,"Arlington, TX",""],[2012,58,10,"College Station, TX",""],[2013,45,33,"Fayetteville, AR",""],[2014,35,28,"Arlington, TX","OT"],[2015,28,21,"Arlington, TX","OT"],[2016,45,24,"Arlington, TX",""],[2017,50,43,"Arlington, TX","OT"],[2018,24,17,"Arlington, TX",""],[2019,31,27,"Arlington, TX",""],[2020,42,31,"College Station, TX",""],[2021,10,20,"Arlington, TX",""],[2022,23,21,"Arlington, TX",""],[2023,34,22,"Arlington, TX",""],[2024,21,17,"Arlington, TX",""],[2025,45,42,"Fayetteville, AR",""],[2026,34,7,"College Station, TX",""]],"auburn":[[1911,16,0,"Dallas, TX",""],[1985,36,16,"Dallas, TX","Cotton Bowl"],[2012,63,21,"Auburn, AL",""],[2013,41,45,"College Station, TX",""],[2014,41,38,"Auburn, AL",""],[2015,10,26,"College Station, TX",""],[2016,29,16,"Auburn, AL",""],[2017,27,42,"College Station, TX",""],[2018,24,28,"Auburn, AL",""],[2019,20,28,"College Station, TX",""],[2020,31,20,"Auburn, AL",""],[2021,20,3,"College Station, TX",""],[2022,10,13,"Auburn, AL",""],[2023,27,10,"College Station, TX",""],[2024,41,43,"Auburn, AL","4OT"],[2025,16,10,"College Station, TX",""]],"florida":[[1962,6,42,"Gainesville, FL",""],[1976,37,14,"El Paso, TX","Sun Bowl"],[2012,17,20,"College Station, TX",""],[2017,19,17,"Gainesville, FL",""],[2020,41,38,"College Station, TX",""],[2022,24,41,"College Station, TX",""],[2024,33,20,"Gainesville, FL",""],[2025,34,17,"College Station, TX",""]],"georgia":[[1950,40,20,"College Park, MD","Presidential Cup Bowl"],[1953,14,12,"Dallas, TX",""],[1954,6,0,"Athens, GA",""],[1980,0,42,"Athens, GA",""],[2009,20,44,"Shreveport, LA","Independence Bowl"],[2019,13,19,"Athens, GA",""]],"kentucky":[[1952,7,10,"College Station, TX",""],[1953,7,6,"Lexington, KY",""],[2018,20,14,"College Station, TX","OT"],[2026,21,31,"College Station, TX",""]],"lsu":[[1899,52,0,"College Station, TX",""],[1906,22,12,"Baton Rouge, LA",""],[1907,11,5,"College Station, TX",""],[1908,0,26,"New Orleans, LA",""],[1913,7,7,"Houston, TX",""],[1914,63,9,"Dallas, TX",""],[1916,0,13,"Galveston, TX",""],[1917,27,0,"San Antonio, TX",""],[1920,0,0,"College Station, TX",""],[1921,0,6,"Baton Rouge, LA",""],[1922,46,0,"College Station, TX",""],[1923,28,0,"Baton Rouge, LA",""],[1942,7,16,"Baton Rouge, LA",""],[1943,28,13,"Baton Rouge, LA",""],[1943,14,19,"Miami, FL","Orange Bowl"],[1944,7,0,"Baton Rouge, LA",""],[1945,12,31,"Baton Rouge, LA",""],[1946,9,33,"Baton Rouge, LA",""],[1947,13,19,"Baton Rouge, LA",""],[1948,13,14,"Baton Rouge, LA",""],[1949,0,34,"Baton Rouge, LA",""],[1955,28,0,"Dallas, TX",""],[1956,9,6,"Baton Rouge, LA",""],[1960,0,9,"Baton Rouge, LA",""],[1961,7,16,"Baton Rouge, LA",""],[1962,0,21,"Baton Rouge, LA",""],[1963,6,14,"Baton Rouge, LA",""],[1964,6,9,"Baton Rouge, LA",""],[1965,0,10,"Baton Rouge, LA",""],[1966,7,7,"Baton Rouge, LA",""],[1967,6,17,"Baton Rouge, LA",""],[1968,12,13,"Baton Rouge, LA",""],[1969,6,35,"Baton Rouge, LA",""],[1970,20,18,"Baton Rouge, LA",""],[1971,0,37,"Baton Rouge, LA",""],[1972,17,42,"Baton Rouge, LA",""],[1973,23,28,"Baton Rouge, LA",""],[1974,21,14,"Baton Rouge, LA",""],[1975,39,8,"Baton Rouge, LA",""],[1986,17,35,"Baton Rouge, LA",""],[1987,3,17,"College Station, TX",""],[1988,0,27,"Baton Rouge, LA",""],[1989,28,16,"College Station, TX",""],[1990,8,17,"Baton Rouge, LA",""],[1991,45,7,"College Station, TX",""],[1992,31,22,"Baton Rouge, LA",""],[1993,24,0,"College Station, TX",""],[1994,18,13,"Baton Rouge, LA",""],[1995,33,17,"College Station, TX",""],[2010,24,41,"Arlington, TX","Cotton Bowl"],[2012,19,24,"College Station, TX","LSU win vacated"],[2013,10,34,"Baton Rouge, LA","LSU win vacated"],[2014,17,23,"College Station, TX","LSU win vacated"],[2015,7,19,"Baton Rouge, LA","LSU win vacated"],[2016,39,54,"College Station, TX",""],[2017,21,45,"Baton Rouge, LA",""],[2018,74,72,"College Station, TX","7OT"],[2019,7,50,"Baton Rouge, LA",""],[2020,20,7,"College Station, TX",""],[2021,24,27,"Baton Rouge, LA",""],[2022,38,23,"College Station, TX",""],[2023,30,42,"Baton Rouge, LA",""],[2024,38,23,"College Station, TX",""],[2025,49,25,"Baton Rouge, LA",""],[2026,6,35,"Baton Rouge, LA",""]],"mississippi-state":[[1912,41,7,"Houston, TX",""],[1913,0,6,"Dallas, TX",""],[1915,0,7,"Dallas, TX",""],[1937,14,0,"Tyler, TX",""],[2000,41,43,"Shreveport, LA","Independence Bowl (OT)"],[2012,38,13,"Starkville, MS",""],[2013,51,41,"College Station, TX",""],[2014,31,48,"Starkville, MS",""],[2015,30,17,"College Station, TX",""],[2016,28,35,"Starkville, MS",""],[2017,14,35,"College Station, TX",""],[2018,13,28,"Starkville, MS","MSU win vacated"],[2019,49,30,"College Station, TX",""],[2020,28,14,"Starkville, MS",""],[2021,22,26,"College Station, TX",""],[2022,24,42,"Starkville, MS",""],[2023,51,10,"College Station, TX",""],[2024,34,24,"Starkville, MS",""],[2025,31,9,"College Station, TX",""]],"missouri":[[1957,28,0,"Columbia, MO",""],[1958,12,0,"College Station, TX",""],[1992,26,13,"Columbia, MO",""],[1993,73,0,"College Station, TX",""],[1998,17,14,"College Station, TX",""],[1999,51,14,"Columbia, MO",""],[2002,27,33,"College Station, TX",""],[2003,22,45,"Columbia, MO",""],[2006,25,19,"College Station, TX",""],[2007,26,40,"Columbia, MO",""],[2010,9,30,"College Station, TX",""],[2011,31,38,"College Station, TX","OT"],[2012,59,29,"College Station, TX",""],[2013,21,28,"Columbia, MO",""],[2014,27,34,"College Station, TX",""],[2021,35,14,"Columbia, MO",""],[2024,41,10,"College Station, TX",""],[2025,38,17,"Columbia, MO",""],[2026,6,27,"Columbia, MO",""]],"oklahoma":[[1903,0,6,"Bryan, TX",""],[1907,19,0,"College Station, TX",""],[1909,14,8,"Dallas, TX",""],[1912,28,6,"Houston, TX",""],[1944,14,21,"Oklahoma City, OK",""],[1945,19,14,"Norman, OK",""],[1946,7,10,"Norman, OK",""],[1947,14,26,"Norman, OK",""],[1948,14,42,"Norman, OK",""],[1949,13,33,"Norman, OK",""],[1950,28,34,"Norman, OK",""],[1951,14,7,"College Station, TX",""],[1993,14,44,"Norman, OK",""],[1994,36,14,"College Station, TX",""],[1996,33,16,"College Station, TX",""],[1997,51,7,"Norman, OK",""],[1998,29,0,"College Station, TX",""],[1999,6,51,"Norman, OK",""],[2000,31,35,"College Station, TX",""],[2001,10,31,"Norman, OK",""],[2002,30,26,"College Station, TX",""],[2003,0,77,"Norman, OK",""],[2004,35,42,"College Station, TX",""],[2005,30,36,"Norman, OK",""],[2006,16,17,"College Station, TX",""],[2007,14,42,"Norman, OK",""],[2008,28,66,"College Station, TX",""],[2009,10,65,"Norman, OK",""],[2010,33,19,"College Station, TX",""],[2011,25,41,"Norman, OK",""],[2012,41,13,"Arlington, TX","Cotton Bowl"]],"ole-miss":[[1911,17,0,"College Station, TX",""],[1914,14,7,"Beaumont, TX",""],[1975,7,0,"College Station, TX",""],[1980,23,20,"Jackson, MS",""],[2012,30,27,"Oxford, MS",""],[2013,41,38,"Oxford, MS",""],[2014,20,35,"College Station, TX","Ole Miss win vacated"],[2015,3,23,"Oxford, MS",""],[2016,28,29,"College Station, TX","Ole Miss win vacated"],[2017,31,24,"Oxford, MS",""],[2018,38,24,"College Station, TX",""],[2019,24,17,"Oxford, MS",""],[2021,19,29,"Oxford, MS",""],[2022,28,31,"College Station, TX",""],[2023,35,38,"Oxford, MS",""]],"south-carolina":[[2014,52,28,"Columbia, SC",""],[2015,35,28,"College Station, TX",""],[2016,24,13,"Columbia, SC",""],[2017,24,17,"College Station, TX",""],[2018,26,23,"Columbia, SC",""],[2019,30,6,"College Station, TX",""],[2020,48,3,"Columbia, SC",""],[2021,44,14,"College Station, TX",""],[2022,24,30,"Columbia, SC",""],[2023,30,17,"College Station, TX",""],[2024,20,44,"Columbia, SC",""],[2025,31,30,"College Station, TX",""]],"tennessee":[[1957,0,3,"Jacksonville, FL","Gator Bowl"],[2004,7,38,"Dallas, TX","Cotton Bowl"],[2016,45,38,"College Station, TX","2OT"],[2020,34,13,"Knoxville, TN",""],[2023,13,20,"Knoxville, TN",""]],"texas":[[1894,0,38,"Austin, TX",""],[1898,0,48,"Austin, TX",""],[1899,0,6,"San Antonio, TX",""],[1900,0,5,"San Antonio, TX",""],[1900,0,11,"Austin, TX",""],[1901,0,17,"San Antonio, TX",""],[1901,0,32,"Austin, TX",""],[1902,0,0,"San Antonio, TX",""],[1902,12,0,"Austin, TX",""],[1903,6,29,"Austin, TX",""],[1904,6,34,"Austin, TX",""],[1905,0,27,"Austin, TX",""],[1906,0,24,"Austin, TX",""],[1907,0,0,"Dallas, TX",""],[1907,6,11,"Austin, TX",""],[1908,8,24,"Houston, TX",""],[1908,12,28,"Austin, TX",""],[1909,23,0,"Houston, TX",""],[1909,5,0,"Austin, TX",""],[1910,14,8,"Houston, TX",""],[1911,0,6,"Houston, TX",""],[1915,13,0,"College Station, TX",""],[1916,7,21,"Austin, TX",""],[1917,7,0,"College Station, TX",""],[1918,0,7,"Austin, TX",""],[1919,7,0,"College Station, TX",""],[1920,3,7,"Austin, TX",""],[1921,0,0,"College Station, TX",""],[1922,14,7,"Austin, TX",""],[1923,0,6,"College Station, TX",""],[1924,0,7,"Austin, TX",""],[1925,28,0,"College Station, TX",""],[1926,5,14,"Austin, TX",""],[1927,28,7,"College Station, TX",""],[1928,0,19,"Austin, TX",""],[1929,13,0,"College Station, TX",""],[1930,0,26,"Austin, TX",""],[1931,7,6,"College Station, TX",""],[1932,0,21,"Austin, TX",""],[1933,10,10,"College Station, TX",""],[1934,0,13,"Austin, TX",""],[1935,20,6,"College Station, TX",""],[1936,0,7,"Austin, TX",""],[1937,7,0,"College Station, TX",""],[1938,6,7,"Austin, TX",""],[1939,20,0,"College Station, TX",""],[1940,0,7,"Austin, TX",""],[1941,0,23,"College Station, TX",""],[1942,6,12,"Austin, TX",""],[1943,13,27,"College Station, TX",""],[1944,0,6,"Austin, TX",""],[1945,10,20,"College Station, TX",""],[1946,7,24,"Austin, TX",""],[1947,13,32,"College Station, TX",""],[1948,14,14,"Austin, TX",""],[1949,14,42,"College Station, TX",""],[1950,0,17,"Austin, TX",""],[1951,22,21,"College Station, TX",""],[1952,12,32,"Austin, TX",""],[1953,12,21,"College Station, TX",""],[1954,13,22,"Austin, TX",""],[1955,6,21,"College Station, TX",""],[1956,34,21,"Austin, TX",""],[1957,7,9,"College Station, TX",""],[1958,0,27,"Austin, TX",""],[1959,17,20,"College Station, TX",""],[1960,14,21,"Austin, TX",""],[1961,0,25,"College Station, TX",""],[1962,3,13,"Austin, TX",""],[1963,13,15,"College Station, TX",""],[1964,7,26,"Austin, TX",""],[1965,17,21,"College Station, TX",""],[1966,14,22,"Austin, TX",""],[1967,10,7,"College Station, TX",""],[1968,14,35,"Austin, TX",""],[1969,12,49,"College Station, TX",""],[1970,14,52,"Austin, TX",""],[1971,14,34,"College Station, TX",""],[1972,3,38,"Austin, TX",""],[1973,13,42,"College Station, TX",""],[1974,3,32,"Austin, TX",""],[1975,20,10,"College Station, TX",""],[1976,27,3,"Austin, TX",""],[1977,28,57,"College Station, TX",""],[1978,7,22,"Austin, TX",""],[1979,13,7,"College Station, TX",""],[1980,24,14,"Austin, TX",""],[1981,13,21,"College Station, TX",""],[1982,16,53,"Austin, TX",""],[1983,13,45,"College Station, TX",""],[1984,37,12,"Austin, TX",""],[1985,42,10,"College Station, TX",""],[1986,16,3,"Austin, TX",""],[1987,20,13,"College Station, TX",""],[1988,28,24,"Austin, TX",""],[1989,21,10,"College Station, TX",""],[1990,27,28,"Austin, TX",""],[1991,31,14,"College Station, TX",""],[1992,34,13,"Austin, TX",""],[1993,18,9,"College Station, TX",""],[1994,34,10,"Austin, TX",""],[1995,6,16,"College Station, TX",""],[1996,15,51,"Austin, TX",""],[1997,27,16,"College Station, TX",""],[1998,24,26,"Austin, TX",""],[1999,20,16,"College Station, TX",""],[2000,17,43,"Austin, TX",""],[2001,7,21,"College Station, TX",""],[2002,20,50,"Austin, TX",""],[2003,15,46,"College Station, TX",""],[2004,13,26,"Austin, TX",""],[2005,29,40,"College Station, TX",""],[2006,12,7,"Austin, TX",""],[2007,38,30,"College Station, TX",""],[2008,9,49,"Austin, TX",""],[2009,39,49,"College Station, TX",""],[2010,24,17,"Austin, TX",""],[2011,25,27,"College Station, TX",""],[2024,7,17,"College Station, TX",""],[2025,17,27,"Austin, TX",""]],"vanderbilt":[[2013,56,24,"College Station, TX",""],[2015,25,0,"Nashville, TN",""],[2020,17,12,"College Station, TX",""]]};
+const SEC_TEAMS = {
+  "alabama":{n:"Alabama",c:"#9E1B32",home:["Tuscaloosa, AL"],next:"Oct. 24 at Tuscaloosa"},
+  "arkansas":{n:"Arkansas",c:"#C8102E",home:["Fayetteville, AR","Little Rock, AR"]},
+  "auburn":{n:"Auburn",c:"#E87722",home:["Auburn, AL"]},
+  "florida":{n:"Florida",c:"#0021A5",cd:"#5B7BEA",home:["Gainesville, FL"]},
+  "georgia":{n:"Georgia",c:"#BA0C2F",home:["Athens, GA"]},
+  "kentucky":{n:"Kentucky",c:"#0033A0",cd:"#5B82E0",home:["Lexington, KY"]},
+  "lsu":{n:"LSU",c:"#461D7C",cd:"#9B72D6",home:["Baton Rouge, LA"],vac:"LSU"},
+  "mississippi-state":{n:"Mississippi State",short:"Miss. State",c:"#6E6E6E",cd:"#A9A9A9",home:["Starkville, MS"],vac:"Mississippi State"},
+  "missouri":{n:"Missouri",c:"#D9A21B",home:["Columbia, MO"]},
+  "oklahoma":{n:"Oklahoma",c:"#841617",cd:"#C8484A",home:["Norman, OK"],next:"Nov. 21 at Norman"},
+  "ole-miss":{n:"Ole Miss",c:"#CE1126",home:["Oxford, MS","Jackson, MS"],vac:"Ole Miss"},
+  "south-carolina":{n:"South Carolina",c:"#1C1C1C",cd:"#BDBDBD",home:["Columbia, SC"],next:"Nov. 7 at Columbia, S.C."},
+  "tennessee":{n:"Tennessee",c:"#FF8200",home:["Knoxville, TN"],next:"Nov. 14 at Kyle Field"},
+  "texas":{n:"Texas",c:"var(--orange)",home:["Austin, TX"],next:"Nov. 27 at Kyle Field"},
+  "vanderbilt":{n:"Vanderbilt",c:"#A8925E",home:["Nashville, TN"]}
+};
+const SEC_DEFAULT = SEC_NEXT;
+(function(){
+  const $s = s => document.querySelector(s);
+  const st = { team: SEC_DEFAULT, era: "all", sort: "pct" };
+  const dark = () => { const t=document.documentElement.dataset.theme; return t ? t==="dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+  const col = k => { const t=SEC_TEAMS[k]; return dark() && t.cd ? t.cd : t.c; };
+  const AM = () => "var(--maroon)";
+  const vac = g => /vacated/i.test(g[4]);
+  const res = g => g[1]>g[2] ? "W" : g[1]<g[2] ? "L" : "T";
+  const fmtSeason = y => String(y);
+  function stats(k){
+    const G = SEC_GAMES[k], t = SEC_TEAMS[k];
+    let w=0,l=0,ti=0,v=0;
+    G.forEach(g=>{ const r=res(g); if(r==="W")w++; else if(r==="T")ti++; else { l++; if(vac(g)) v++; } });
+    // streaks: ties and vacated games end a streak; vacated wins do not count for the opponent
+    let runs=[], cur=null;
+    G.forEach(g=>{ const r=res(g); const side = r==="W"?"A":(r==="L"&&!vac(g))?"O":null;
+      if(side && cur && cur.s===side){ cur.n++; cur.y1=g[0]; }
+      else { if(cur) runs.push(cur); cur = side ? {s:side,n:1,y0:g[0],y1:g[0]} : null; } });
+    const last = cur; if(cur) runs.push(cur);
+    const best = s => runs.filter(r=>r.s===s).sort((a,b)=>b.n-a.n || a.y0-b.y0)[0];
+    const big = s => G.filter(g=> s==="A" ? g[1]>g[2] : (g[2]>g[1] && !vac(g))).sort((a,b)=>Math.abs(b[1]-b[2])-Math.abs(a[1]-a[2]) || a[0]-b[0])[0];
+    const site = {home:[0,0,0],road:[0,0,0],neutral:[0,0,0]};
+    G.forEach(g=>{ const key = g[3]==="College Station, TX" ? "home" : t.home.includes(g[3]) ? "road" : "neutral"; const r=res(g); site[key][r==="W"?0:r==="L"?1:2]++; });
+    return { G, w, l:l-v, lf:l, t:ti, v, cur:last, bestA:best("A"), bestO:best("O"), bigA:big("A"), bigO:big("O"), site, n:G.length };
+  }
+  const rec = (a,b,c) => c ? `${a}–${b}–${c}` : `${a}–${b}`;
+  const span = r => r.y0===r.y1 ? `${r.y0}` : `${r.y0}–${r.y1}`;
+
+  function renderBar(){
+    const el=$s("#oppBar"); el.innerHTML="";
+    Object.keys(SEC_TEAMS).forEach(k=>{ const t=SEC_TEAMS[k], s=stats(k);
+      const b=document.createElement("button"); b.type="button"; b.style.setProperty("--c", col(k));
+      b.setAttribute("aria-pressed", String(k===st.team));
+      b.innerHTML=`<i></i>${t.short||t.n}${k===SEC_NEXT?` <small>Next up</small>`:""}`;
+      b.onclick=()=>{ st.team=k; renderAll(); }; el.appendChild(b); });
+  }
+  function renderSeries(){
+    const k=st.team, t=SEC_TEAMS[k], s=stats(k), c=col(k);
+    const pa = s.w/s.n, po = s.l/(s.n-s.v);
+    let strk="";
+    if(s.cur){ const who = s.cur.s==="A" ? "Texas A&amp;M" : t.n; strk = `<div class="v" style="color:${s.cur.s==="A"?AM():c}">${s.cur.n} · ${who} (${span(s.cur)})</div>`; }
+    else strk = `<div class="v" style="color:var(--muted)">None (last meeting ${res(s.G[s.G.length-1])==="T"?"a tie":"vacated"})</div>`;
+    const vacTxt = s.v ? `<div class="vacnote">${s.v} ${t.vac} win${s.v>1?"s":""} vacated by the NCAA (${s.G.filter(vac).map(g=>g[0]).join(", ")}). On the field: ${rec(s.w,s.lf,s.t)}.</div>` : "";
+    $s("#series").innerHTML = `
+      <div class="tally">
+        <div><div class="who" style="color:${AM()}">Texas A&amp;M</div><div class="n" style="color:${AM()}">${s.w}<small>wins (${pa.toFixed(3).replace(/^0/,"")})</small></div></div>
+        <div class="mid"><b>${s.t}</b><span>${s.t===1?"tie":"ties"}</span></div>
+        <div class="r"><div class="who" style="color:${c}">${t.n}</div><div class="n" style="color:${c}"><small>wins (${po.toFixed(3).replace(/^0/,"")})</small>${s.l}</div></div>
+      </div>
+      <div class="sbar" role="img" aria-label="Texas A&M ${s.w} wins, ${s.t} ties, ${t.n} ${s.l} wins">
+        <div style="flex-grow:${s.w};background:${AM()}"></div><div style="flex-grow:${s.t};background:var(--muted);opacity:.5"></div><div style="flex-grow:${s.l};background:${c}"></div>
+      </div>
+      <div class="streak"><div class="k">Current win streak</div>${strk}
+        <div class="nx">${s.n} meetings since ${s.G[0][0]} · Last: <b>${lastTxt(s.G[s.G.length-1],t)}</b>${t.next?` · Next: <b>${t.next}</b>`:""}</div></div>${vacTxt}`;
+  }
+  function lastTxt(g,t){ const r=res(g); return `${r==="W"?"A&M":r==="L"?t.n:"Tie"} ${Math.max(g[1],g[2])}–${Math.min(g[1],g[2])}, ${g[0]}`; }
+
+  function renderChart(){
+    const k=st.team, t=SEC_TEAMS[k], s=stats(k), c=col(k);
+    let G=s.G.map((g,i)=>({g,i})); if(st.era==="sec") G=G.filter(o=>o.g[0]>=2012);
+    const svg=$s("#marg"), W=1100, H=380, m={l:52,r:20,t:40,b:60};
+    if(!G.length){ svg.innerHTML=`<text x="${W/2}" y="${H/2}" text-anchor="middle" fill="${css('--muted')}" font-size="16">No meetings since 2012</text>`; $s("#margNote").textContent=""; return; }
+    const y0=G[0].g[0], y1=Math.max(G[G.length-1].g[0], st.era==="sec"?2026:y0);
+    const lo=y0-1, hi=y1+1;
+    const X=y=> m.l + (y-lo)/(hi-lo)*(W-m.l-m.r);
+    const mx=Math.max(...G.map(o=>Math.abs(o.g[1]-o.g[2])),7); const top=Math.ceil(mx/10)*10;
+    const mid=(m.t+H-m.b)/2, Y=v=> mid - v/top*(mid-m.t);
+    const yr={}; G.forEach(o=>{ (yr[o.g[0]]=yr[o.g[0]]||[]).push(o); });
+    const slot=(W-m.l-m.r)/(hi-lo); const bw=Math.max(2,Math.min(26,slot*0.62));
+    let h="";
+    [top,top/2,0,-top/2,-top].forEach(v=>{ h+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="${css(v===0?'--muted':'--grid')}" ${v===0?'':'stroke-dasharray="3 4"'}/><text x="${m.l-10}" y="${Y(v)+4}" text-anchor="end" font-size="13" fill="${css('--muted')}">${Math.abs(v)}</text>`; });
+    h+=`<text x="${m.l}" y="${m.t-18}" font-size="14" font-weight="700" fill="${css('--maroon')}">A&amp;M won by</text><text x="${m.l}" y="${H-8}" font-size="14" font-weight="700" fill="${c.startsWith('var')?css('--orange'):c}">${t.short||t.n} won by</text>`;
+    const stepY = (hi-lo)>60?10:(hi-lo)>25?5:(hi-lo)>12?2:1;
+    for(let y=Math.ceil(lo/stepY)*stepY;y<=hi;y+=stepY){ if(y<=lo) continue; h+=`<line x1="${X(y)}" x2="${X(y)}" y1="${m.t}" y2="${H-m.b}" stroke="${css('--grid')}" stroke-dasharray="2 5"/><text x="${X(y)}" y="${H-m.b+22}" text-anchor="middle" font-size="13" fill="${css('--muted')}">${y}</text>`; }
+    Object.values(yr).forEach(arr=>{ arr.forEach((o,j)=>{ const g=o.g, d=g[1]-g[2], n=arr.length; const w=bw/n;
+      const x=X(g[0]) - bw/2 + j*w; const yv = d===0 ? Y(0)-2 : Math.min(Y(0),Y(d)); const hh = d===0 ? 4 : Math.abs(Y(d)-Y(0));
+      const fill = d>0 ? css('--maroon') : d<0 ? (c.startsWith('var')?css('--orange'):c) : css('--muted');
+      h+=`<rect data-i="${o.i}" x="${x+0.5}" y="${yv}" width="${Math.max(1.5,w-1)}" height="${Math.max(hh,1.5)}" rx="${Math.min(3,w/3)}" fill="${fill}" ${vac(g)?`fill-opacity=".45" stroke="${fill}" stroke-dasharray="2 2"`:''}/>`; }); });
+    svg.innerHTML=h; svg.setAttribute("aria-label",`Texas A&M versus ${t.n}, margin of every game`);
+    $s("#margTitle").textContent = `Head-to-head results vs. ${t.n}`;
+    $s("#margNote").textContent = `Hover or tap a bar for the score.${s.v?" Dashed bars are wins later vacated.":""}${G.some(o=>o.g[1]===o.g[2])?" Gray ticks on the line are ties.":""}`;
+  }
+  function tipFor(g,t){ const r=res(g);
+    const head = r==="W"?`Texas A&M ${g[1]}, ${t.n} ${g[2]}`: r==="L"?`${t.n} ${g[2]}, Texas A&M ${g[1]}`:`Tie, ${g[1]}–${g[2]}`;
+    return `<b>${g[0]} season</b>${head}<br>${g[3]}${g[4]?`<br><span style="opacity:.8">${g[4]}</span>`:""}`; }
+  function wireTip(){
+    const svg=$s("#marg"), tip=$s("#secTip"), card=svg.closest(".chartcard");
+    const show=e=>{ const r=e.target.closest("rect[data-i]"); if(!r){ hide(); return; }
+      const g=SEC_GAMES[st.team][+r.dataset.i]; tip.innerHTML=tipFor(g,SEC_TEAMS[st.team]);
+      svg.querySelectorAll("rect[data-i]").forEach(x=>x.classList.toggle("dim",x!==r));
+      const cb=card.getBoundingClientRect(), rb=r.getBoundingClientRect();
+      let x=rb.left-cb.left+rb.width/2-120; x=Math.max(8,Math.min(x,cb.width-250));
+      tip.style.left=x+"px"; tip.style.top=(Math.max(rb.top-cb.top-96,8))+"px"; tip.classList.add("on"); };
+    const hide=()=>{ tip.classList.remove("on"); svg.querySelectorAll("rect.dim").forEach(x=>x.classList.remove("dim")); };
+    svg.addEventListener("pointermove",show); svg.addEventListener("pointerdown",show); svg.addEventListener("pointerleave",hide);
+  }
+  function renderHL(){
+    const k=st.team, t=SEC_TEAMS[k], s=stats(k), c=col(k);
+    const sc=g=>`${Math.max(g[1],g[2])}–${Math.min(g[1],g[2])}`;
+    const last10=s.G.slice(-10); let a=0,b=0,d=0; last10.forEach(g=>{const r=res(g); if(r==="W")a++; else if(r==="L"&&!vac(g))b++; else if(r==="T")d++; });
+    const S=s.site, sr=x=>rec(x[0],x[1],x[2]);
+    const cards=[
+      ["Biggest A&M win", s.bigA?`+${s.bigA[1]-s.bigA[2]}`:"None", s.bigA?`${sc(s.bigA)} in ${s.bigA[0]}`:"", AM()],
+      [`Biggest ${t.short||t.n} win`, s.bigO?`+${s.bigO[2]-s.bigO[1]}`:"None", s.bigO?`${sc(s.bigO)} in ${s.bigO[0]}`:"", c],
+      ["Last 10 meetings", rec(a,b,d), s.G.length<10?`All ${s.G.length} meetings, A&M first`:`Since ${last10[0][0]}, A&M first`, "var(--ink)"],
+      ["Longest A&M streak", s.bestA?s.bestA.n:"0", s.bestA?span(s.bestA):"", AM()],
+      [`Longest ${t.short||t.n} streak`, s.bestO?s.bestO.n:"0", s.bestO?span(s.bestO):"", c],
+      ["Home · Road · Neutral", `${sr(S.home)} · ${sr(S.road)} · ${sr(S.neutral)}`, "A&M's record by site (on the field)", "var(--ink)"]
+    ];
+    $s("#hl").innerHTML=cards.map(([k1,v,s1,cc])=>`<div class="c"><div class="k">${k1}</div><div class="v" style="color:${cc}${k1.startsWith("Home")?";font-size:22px":""}">${v}</div><div class="s">${s1}</div></div>`).join("");
+  }
+  function renderDec(){
+    const k=st.team, s=stats(k), c=col(k), D={};
+    s.G.forEach(g=>{ const d=Math.floor(g[0]/10)*10; D[d]=D[d]||[0,0,0]; const r=res(g); D[d][r==="W"?0:r==="L"?1:2]++; });
+    $s("#dec").innerHTML=Object.keys(D).sort().map(d=>{ const [w,l,t]=D[d]; const lead=w>l?"am":l>w?"op":"ev";
+      const bg= lead==="am"?"var(--maroon)":lead==="op"?c:"var(--grid)"; const fg= lead==="ev"?"var(--ink)":"#fff";
+      return `<div style="background:${bg};color:${fg}"><b>${rec(w,l,t)}</b>${d}s</div>`; }).join("");
+  }
+  function renderLog(){
+    const k=st.team, t=SEC_TEAMS[k], s=stats(k);
+    $s("#gamesSum").textContent=`Every game vs. ${t.n} (${s.n})`;
+    $s("#log2").innerHTML=`<thead><tr><th>Season</th><th>Result</th><th>Site</th><th>Notes</th></tr></thead><tbody>${
+      s.G.slice().reverse().map(g=>{const r=res(g); return `<tr><td>${g[0]}</td><td class="res ${r}">${r} ${g[1]}–${g[2]}</td><td>${g[3]}</td><td style="color:var(--muted)">${g[4]||""}</td></tr>`;}).join("")}</tbody>`;
+  }
+  function renderGlance(){
+    const rows=Object.keys(SEC_TEAMS).map(k=>{ const s=stats(k); return {k,s,pct:(s.w+0.5*s.t)/(s.w+s.l+s.t)}; });
+    if(st.sort==="pct") rows.sort((a,b)=>b.pct-a.pct || b.s.n-a.s.n);
+    else if(st.sort==="n") rows.sort((a,b)=>b.s.n-a.s.n);
+    else rows.sort((a,b)=>SEC_TEAMS[a.k].n.localeCompare(SEC_TEAMS[b.k].n));
+    $s("#glance").innerHTML=`<thead><tr><th>Opponent</th><th>A&amp;M record</th><th>Win %</th><th></th><th>Current streak</th><th>Last meeting</th></tr></thead><tbody>${
+      rows.map(({k,s,pct})=>{ const t=SEC_TEAMS[k], c=col(k), cur=s.cur;
+        const sk = cur ? `<span style="color:${cur.s==="A"?AM():c};font-weight:700">${cur.s==="A"?"A&M":t.short||t.n} ${cur.n}</span>` : "None";
+        return `<tr data-k="${k}" class="${k===st.team?"sel":""}" tabindex="0"><td><span class="nm" style="--c:${c}"><i></i>${t.n}</span></td><td>${rec(s.w,s.l,s.t)}${s.v?" †":""}</td><td>${pct.toFixed(3).replace(/^0/,"").replace(/^1\.000$/,"1.000")}</td>
+        <td><div class="mini"><div style="flex-grow:${s.w};background:${AM()}"></div><div style="flex-grow:${s.t};background:var(--muted);opacity:.5"></div><div style="flex-grow:${s.l};background:${c}"></div></div></td>
+        <td>${sk}</td><td>${lastTxt(s.G[s.G.length-1],t)}</td></tr>`; }).join("")}</tbody>`;
+    document.querySelectorAll("#glance tr[data-k]").forEach(tr=>{ const go=()=>{ st.team=tr.dataset.k; renderAll(); $s("#oppBar").scrollIntoView({behavior:"smooth",block:"start"}); };
+      tr.onclick=go; tr.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }; });
+  }
+  function seg(el, opts, key, cb){ el.innerHTML=""; opts.forEach(([v,l])=>{ const b=document.createElement("button"); b.type="button"; b.textContent=l; b.setAttribute("aria-pressed",String(st[key]===v));
+    b.onclick=()=>{ st[key]=v; [...el.children].forEach(x=>x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); cb(); }; el.appendChild(b); }); }
+  function renderAll(){ renderBar(); renderSeries(); renderChart(); renderHL(); renderDec(); renderLog(); renderGlance(); }
+  window.secRender = renderAll; window.secChart = renderChart;
+  seg($s("#eraSeg"), [["all","All time"],["sec","SEC era, 2012 on"]], "era", renderChart);
+  seg($s("#glSeg"), [["pct","Win %"],["n","Most meetings"],["az","A to Z"]], "sort", renderGlance);
+  $s("#secUpdated").textContent = `Updated ${SEC_UPDATED}. Source: Winsipedia game lists, 2026 scores from ESPN.`;
+  wireTip(); renderAll();
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", ()=>{ if(!$s("#viewSEC").hidden) renderAll(); });
+})();
+</script>
+
+</body>
+</html>
